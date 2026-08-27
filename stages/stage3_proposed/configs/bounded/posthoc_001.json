@@ -1,0 +1,1 @@
+{"run_id":"POSTHOC_BOUND_001","seed":20260827,"mode":"posthoc","embedding_dim":64,"layers":1,"tolerance":0.1,"temperature":0.2,"difficulty_weight":0.0,"rerank_weight":1.0,"base_checkpoint":"runs/stage3/DRLGCN_LAMBDA0_DEV_20260827/checkpoint.pt"}

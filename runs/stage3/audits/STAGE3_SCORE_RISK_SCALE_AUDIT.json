@@ -1,0 +1,20 @@
+{
+  "audit_id": "STAGE3_SCORE_RISK_SCALE_AUDIT",
+  "created_date": "2026-08-27",
+  "status": "PASS",
+  "scope": "Unseen development candidates from the frozen lambda-zero checkpoint; no validation or test targets read",
+  "source_checkpoint": "DRLGCN_LAMBDA0_DEV_20260827",
+  "tolerance": 0.1,
+  "score": {
+    "standard_deviation": 2.5256519317626953,
+    "quantiles": {"min": -35.35515213012695, "p01": -3.688462429046631, "p10": -1.3499924182891845, "median": 0.6169784665107727, "p90": 4.651144313812256, "p99": 8.293319721221927, "max": 33.03372573852539}
+  },
+  "asymmetric_squared_risk": {
+    "positive_fraction": 0.35541471317624784,
+    "all_candidate_quantiles": {"min": 0.0, "median": 0.0, "p75": 0.004795737331733108, "p90": 0.044426058977842325, "p95": 0.08822575286030765, "p99": 0.15076619386672974, "max": 0.26451170444488525},
+    "positive_quantiles": {"min": 4.0467629247586956e-14, "p10": 0.0003490966861136258, "median": 0.018004298210144043, "p90": 0.10401322394609455, "p99": 0.19194363057613373, "max": 0.26451170444488525}
+  },
+  "files_accessed": ["development_graph_edges.parquet", "development_catalog.parquet", "development_train_events.parquet", "development_difficulty_inputs.parquet", "development_ability_inputs.parquet"],
+  "test_accessed": false,
+  "use": "Coefficient-range calibration only; target outcomes were not used"
+}

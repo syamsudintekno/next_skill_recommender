@@ -90,3 +90,12 @@
 - **INFERENCE — PROVISIONAL:** γ=0.1 is too weak to make the post-hoc probe an informative comparator.
 - All three runs reached epoch 100; the inherited cap must not be extended in response.
 - Trace: `runs/stage3/audits/STAGE3_DEV_RUN_AUDIT.json`.
+
+## Stage 3 score/risk scale audit and bounded-budget freeze — 2026-08-27
+
+- Audit used the λd=0 checkpoint and unseen development candidates without reading validation or test targets.
+- Unseen LightGCN score SD: 2.525652. Positive asymmetric squared-risk median/p90: 0.018004/0.104013; positive candidate fraction: 0.355415.
+- Based on scale rather than target performance, the post-hoc bounded range is γ `{1, 5, 10, 20}`.
+- Matched four-run integrated range is λd `{0.03, 0.1, 0.3, 1.0}`; shared τ=0.1, T=0.2, and seed 20260827.
+- Status: frozen before execution. Result-driven expansion is prohibited.
+- Trace: `runs/stage3/audits/STAGE3_SCORE_RISK_SCALE_AUDIT.json` and `stages/stage3_proposed/configs/bounded_tuning_manifest.json`.

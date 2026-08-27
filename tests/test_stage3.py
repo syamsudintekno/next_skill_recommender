@@ -58,6 +58,10 @@ class Stage3ObjectiveTests(unittest.TestCase):
         reranked = evaluate_relevance_and_risk(**common, rerank_weight=1.0)
         self.assertEqual(base["relevance"]["recall_at_10"], 0.0)
         self.assertEqual(reranked["relevance"]["recall_at_10"], 1.0)
+        self.assertEqual(base["pedagogy"]["dvr_at_10"], 1.0)
+        self.assertEqual(base["pedagogy"]["med_at_10"], 1.0)
+        self.assertEqual(reranked["pedagogy"]["dvr_at_10"], 0.0)
+        self.assertEqual(reranked["pedagogy"]["med_at_10"], 0.0)
 
 
 if __name__ == "__main__":

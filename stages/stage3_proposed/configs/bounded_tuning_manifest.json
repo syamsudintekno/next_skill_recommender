@@ -1,0 +1,41 @@
+{
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "frozen_date": "2026-08-27",
+  "purpose": "Matched validation-only coefficient selection for integrated and post-hoc Stage-3 variants",
+  "selection_seed": 20260827,
+  "shared": {
+    "tolerance": 0.1,
+    "temperature": 0.2,
+    "k": 10,
+    "candidate_set": "full development catalog minus learner development-prefix exposures",
+    "checkpoint_metric": "validation NDCG@10",
+    "epoch_cap": 100,
+    "test_access": false
+  },
+  "lambda_zero_reference": "DRLGCN_LAMBDA0_DEV_20260827",
+  "integrated": [
+    {"run_id": "DRLGCN_BOUND_001", "difficulty_weight": 0.03},
+    {"run_id": "DRLGCN_BOUND_002", "difficulty_weight": 0.1},
+    {"run_id": "DRLGCN_BOUND_003", "difficulty_weight": 0.3},
+    {"run_id": "DRLGCN_BOUND_004", "difficulty_weight": 1.0}
+  ],
+  "posthoc": [
+    {"run_id": "POSTHOC_BOUND_001", "rerank_weight": 1.0},
+    {"run_id": "POSTHOC_BOUND_002", "rerank_weight": 5.0},
+    {"run_id": "POSTHOC_BOUND_003", "rerank_weight": 10.0},
+    {"run_id": "POSTHOC_BOUND_004", "rerank_weight": 20.0}
+  ],
+  "selection_rule": {
+    "reference": "lambda-zero validation result at the same seed",
+    "eligible_set": "non-dominated configurations maximizing NDCG@10 and minimizing DVR@10",
+    "primary_rule": "among eligible configurations with relative NDCG@10 loss <= 1%, select minimum DVR@10",
+    "tie_breaks": ["higher NDCG@10", "lower MED@10", "smaller regularization or reranking coefficient"],
+    "fallback": "if none satisfies the 1% NDCG guardrail, select the configuration with the smallest NDCG loss among those with strictly lower DVR; if no configuration lowers DVR, reject the variant"
+  },
+  "after_selection": {
+    "multi_seed": [20260827, 20260828, 20260829, 20260830, 20260831],
+    "tau_sensitivity": [0.0, 0.05, 0.1, 0.2],
+    "tau_sensitivity_semantics": "analysis only at the selected coefficient; it cannot revise coefficient selection",
+    "test_policy": "no test access until coefficient selection, multi-seed validation, sensitivity analysis, and full design freeze are complete"
+  }
+}

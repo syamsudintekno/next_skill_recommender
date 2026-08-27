@@ -36,3 +36,6 @@
 - **DECISION — REJECTED:** the initial integrated and post-hoc probes are not eligible for model selection because they were not generated under a predeclared bounded matched budget.
 - **DECISION — REJECTED:** extending the 100-epoch cap after all initial Stage 3 probes reached the ceiling is not allowed.
 - **DECISION — OPEN:** the next run set requires an equal-sized coefficient budget for integrated and post-hoc variants and a validation-only Pareto selection rule frozen before execution.
+- **DECISION — REVISED/LOCKED:** the matched coefficient budget and selection rule are frozen in `stages/stage3_proposed/configs/bounded_tuning_manifest.json`; no configuration may be added after results are observed.
+- **DECISION — REVISED/LOCKED:** DVR@10 is violation exposure share; MED@10 is unconditional mean positive excess over all Top-10 exposures. These definitions supersede their previous OPEN status.
+- **FACT — VERIFIED:** target-free scale audit found unseen-score SD 2.525652 and positive-risk median/p90 0.018004/0.104013 at τ=0.1. This supports replacing the ineffective γ=0.1 probe with the frozen range 1–20 without using validation outcomes.

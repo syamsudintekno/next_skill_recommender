@@ -29,3 +29,37 @@ and item exposure counts under `runs/stage3/<run_id>/result.json`.
 The example values `tolerance=0.1`, `temperature=0.2`, `difficulty_weight=0.1`, and
 `rerank_weight=0.1` are **PROPOSAL — OPEN**, not selected settings. Do not compare
 integrated and post-hoc results until a matched, predeclared validation budget is recorded.
+
+## Frozen bounded coefficient selection
+
+The matched budget is now frozen in `configs/bounded_tuning_manifest.json`.
+It contains four integrated coefficients and four post-hoc coefficients, all at
+the same selection seed, tolerance, candidate set, evaluator, and validation-only
+selection rule. Post-hoc runs reuse the bit-identical lambda-zero checkpoint and
+do not retrain LightGCN.
+
+Run the complete budget:
+
+```powershell
+python stages/stage3_proposed/run_bounded_tuning.py --family all
+```
+
+Or run one family at a time:
+
+```powershell
+python stages/stage3_proposed/run_bounded_tuning.py --family integrated
+python stages/stage3_proposed/run_bounded_tuning.py --family posthoc
+```
+
+Existing immutable result directories are skipped. Send back the eight
+`runs/stage3/*_BOUND_*/result.json` files after completion. Do not alter the
+manifest or add trials after viewing results.
+
+After all eight results exist, apply the frozen selection rule with:
+
+```powershell
+python stages/stage3_proposed/select_bounded.py
+```
+
+This writes `runs/stage3/STAGE3_BOUNDED_SELECTION.json`; please send that file
+with the eight result files.
