@@ -1,0 +1,1 @@
+{"run_id":"LIGHTGCN_DEV_001","seed":20260827,"embedding_dim":32,"layers":2,"learning_rate":0.01,"l2":0.0001,"max_epochs":30,"eval_every":5,"patience_evaluations":3,"min_delta":0.00001,"cpu_threads":4}

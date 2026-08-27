@@ -1,0 +1,4 @@
+pyarrow==25.0.1
+numpy>=2.0,<3
+torch>=2.13,<3
+scipy>=1.13,<2

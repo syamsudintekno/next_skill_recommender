@@ -1,0 +1,90 @@
+{
+  "seeds": [
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831
+  ],
+  "runs": [
+    {
+      "seed": 20260827,
+      "recall_at_10": 0.4801474886460722,
+      "ndcg_at_10": 0.29489784137557196,
+      "mrr_at_10": 0.23790762973954663,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261,
+      "best_epoch": 100,
+      "runtime_seconds": 374.11216539999805
+    },
+    {
+      "seed": 20260828,
+      "recall_at_10": 0.4832951121902963,
+      "ndcg_at_10": 0.29546940179339615,
+      "mrr_at_10": 0.23790953901233142,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261,
+      "best_epoch": 100,
+      "runtime_seconds": 387.79739880000125
+    },
+    {
+      "seed": 20260829,
+      "recall_at_10": 0.48419443320293176,
+      "ndcg_at_10": 0.2959991131863131,
+      "mrr_at_10": 0.23835259736042147,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261,
+      "best_epoch": 100,
+      "runtime_seconds": 379.02999519999867
+    },
+    {
+      "seed": 20260830,
+      "recall_at_10": 0.48113674175997123,
+      "ndcg_at_10": 0.2945842833601139,
+      "mrr_at_10": 0.23710104228450377,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261,
+      "best_epoch": 100,
+      "runtime_seconds": 370.39496770000187
+    },
+    {
+      "seed": 20260831,
+      "recall_at_10": 0.47412203786141466,
+      "ndcg_at_10": 0.29115568323022517,
+      "mrr_at_10": 0.23489310213645836,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261,
+      "best_epoch": 100,
+      "runtime_seconds": 354.7376129000004
+    }
+  ],
+  "summary": {
+    "recall_at_10": {
+      "mean": 0.4805791627321373,
+      "sd": 0.003957216841456817
+    },
+    "ndcg_at_10": {
+      "mean": 0.29442126458912404,
+      "sd": 0.0019043319011726079
+    },
+    "mrr_at_10": {
+      "mean": 0.23723278210665236,
+      "sd": 0.001383732559352419
+    }
+  }
+}

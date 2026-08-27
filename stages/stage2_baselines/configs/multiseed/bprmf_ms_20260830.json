@@ -1,0 +1,12 @@
+{
+  "run_id": "BPRMF_MS_20260830",
+  "seed": 20260830,
+  "embedding_dim": 64,
+  "learning_rate": 0.02,
+  "l2": 0.001,
+  "batch_size": 4096,
+  "max_epochs": 100,
+  "eval_every": 10,
+  "patience_evaluations": 3,
+  "min_delta": 1e-05
+}

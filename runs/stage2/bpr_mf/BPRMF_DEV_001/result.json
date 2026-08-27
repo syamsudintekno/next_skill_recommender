@@ -1,0 +1,340 @@
+{
+  "run_id": "BPRMF_DEV_001",
+  "created_at_utc": "2026-08-27T04:57:23.818995+00:00",
+  "status": "PROVISIONAL: full 12-file Stage 1 hash manifest unavailable",
+  "mode": "development",
+  "model": "BPR-MF",
+  "training_semantics": "unobserved items are pairwise optimization samples, not negative preferences",
+  "selection_metric": "validation NDCG@10",
+  "config": {
+    "run_id": "BPRMF_DEV_001",
+    "seed": 20260827,
+    "embedding_dim": 64,
+    "learning_rate": 0.01,
+    "l2": 0.0001,
+    "batch_size": 4096,
+    "max_epochs": 50,
+    "eval_every": 5,
+    "patience_evaluations": 4,
+    "min_delta": 1e-05
+  },
+  "best_epoch": 50,
+  "metrics": {
+    "recall_at_10": 0.4619362381402041,
+    "ndcg_at_10": 0.2602061256230515,
+    "mrr_at_10": 0.19900193211268352,
+    "evaluable_users": 22239,
+    "cold_targets": 2,
+    "mean_candidates": 247.60680724787554,
+    "min_candidates": 176,
+    "max_candidates": 261
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "bpr_loss": 0.6931452488862663
+    },
+    {
+      "epoch": 2,
+      "bpr_loss": 0.6930404973439198
+    },
+    {
+      "epoch": 3,
+      "bpr_loss": 0.6918673972898433
+    },
+    {
+      "epoch": 4,
+      "bpr_loss": 0.6758221725870887
+    },
+    {
+      "epoch": 5,
+      "bpr_loss": 0.5678398814877363,
+      "recall_at_10": 0.2792391744233104,
+      "ndcg_at_10": 0.13735643065253045,
+      "mrr_at_10": 0.09466752601785652,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 6,
+      "bpr_loss": 0.4169316103185822
+    },
+    {
+      "epoch": 7,
+      "bpr_loss": 0.3491861908589224
+    },
+    {
+      "epoch": 8,
+      "bpr_loss": 0.3203169188279398
+    },
+    {
+      "epoch": 9,
+      "bpr_loss": 0.30025626364970914
+    },
+    {
+      "epoch": 10,
+      "bpr_loss": 0.28229858094900473,
+      "recall_at_10": 0.2929088538153694,
+      "ndcg_at_10": 0.14495227640186642,
+      "mrr_at_10": 0.10037100560505391,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 11,
+      "bpr_loss": 0.26234736688388366
+    },
+    {
+      "epoch": 12,
+      "bpr_loss": 0.24285150173158263
+    },
+    {
+      "epoch": 13,
+      "bpr_loss": 0.22454513139829507
+    },
+    {
+      "epoch": 14,
+      "bpr_loss": 0.21128658769323747
+    },
+    {
+      "epoch": 15,
+      "bpr_loss": 0.1990437394080069,
+      "recall_at_10": 0.35347812401636763,
+      "ndcg_at_10": 0.17871194204916074,
+      "mrr_at_10": 0.12593659644111554,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 16,
+      "bpr_loss": 0.18997751247479208
+    },
+    {
+      "epoch": 17,
+      "bpr_loss": 0.18108669419225315
+    },
+    {
+      "epoch": 18,
+      "bpr_loss": 0.1726574347477154
+    },
+    {
+      "epoch": 19,
+      "bpr_loss": 0.16533632975468113
+    },
+    {
+      "epoch": 20,
+      "bpr_loss": 0.1594179454745064,
+      "recall_at_10": 0.38792211880030575,
+      "ndcg_at_10": 0.19934044346049118,
+      "mrr_at_10": 0.14247312921601335,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 21,
+      "bpr_loss": 0.15442485942254702
+    },
+    {
+      "epoch": 22,
+      "bpr_loss": 0.14713247268801308
+    },
+    {
+      "epoch": 23,
+      "bpr_loss": 0.14128943868571323
+    },
+    {
+      "epoch": 24,
+      "bpr_loss": 0.13704215754577667
+    },
+    {
+      "epoch": 25,
+      "bpr_loss": 0.13075406021248245,
+      "recall_at_10": 0.40393003282521694,
+      "ndcg_at_10": 0.2133789908409214,
+      "mrr_at_10": 0.15582560167073858,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 26,
+      "bpr_loss": 0.12498348304329765
+    },
+    {
+      "epoch": 27,
+      "bpr_loss": 0.119812733667835
+    },
+    {
+      "epoch": 28,
+      "bpr_loss": 0.11529671639504079
+    },
+    {
+      "epoch": 29,
+      "bpr_loss": 0.10961348746241541
+    },
+    {
+      "epoch": 30,
+      "bpr_loss": 0.10654109406567851,
+      "recall_at_10": 0.41894869373622917,
+      "ndcg_at_10": 0.22528713874534664,
+      "mrr_at_10": 0.16678070556729666,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 31,
+      "bpr_loss": 0.10129596155527869
+    },
+    {
+      "epoch": 32,
+      "bpr_loss": 0.09768767080097009
+    },
+    {
+      "epoch": 33,
+      "bpr_loss": 0.09278603283270459
+    },
+    {
+      "epoch": 34,
+      "bpr_loss": 0.08934306899085251
+    },
+    {
+      "epoch": 35,
+      "bpr_loss": 0.08613103458478817,
+      "recall_at_10": 0.4352713701155628,
+      "ndcg_at_10": 0.23545051642988934,
+      "mrr_at_10": 0.17511177275442755,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 36,
+      "bpr_loss": 0.08386444956171939
+    },
+    {
+      "epoch": 37,
+      "bpr_loss": 0.07990459995433567
+    },
+    {
+      "epoch": 38,
+      "bpr_loss": 0.07678607935680816
+    },
+    {
+      "epoch": 39,
+      "bpr_loss": 0.07400727259000023
+    },
+    {
+      "epoch": 40,
+      "bpr_loss": 0.07171975038805913,
+      "recall_at_10": 0.4424659382166464,
+      "ndcg_at_10": 0.24319404529163535,
+      "mrr_at_10": 0.1828380108732193,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 41,
+      "bpr_loss": 0.06940632882276908
+    },
+    {
+      "epoch": 42,
+      "bpr_loss": 0.06657292137937132
+    },
+    {
+      "epoch": 43,
+      "bpr_loss": 0.06467946803806
+    },
+    {
+      "epoch": 44,
+      "bpr_loss": 0.061460307042160246
+    },
+    {
+      "epoch": 45,
+      "bpr_loss": 0.05964583780143202,
+      "recall_at_10": 0.45303296011511307,
+      "ndcg_at_10": 0.25157512866988074,
+      "mrr_at_10": 0.1905244576059361,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    },
+    {
+      "epoch": 46,
+      "bpr_loss": 0.05794711847017425
+    },
+    {
+      "epoch": 47,
+      "bpr_loss": 0.05637306819523469
+    },
+    {
+      "epoch": 48,
+      "bpr_loss": 0.05411221202834266
+    },
+    {
+      "epoch": 49,
+      "bpr_loss": 0.052242593558894844
+    },
+    {
+      "epoch": 50,
+      "bpr_loss": 0.05041646317928414,
+      "recall_at_10": 0.4619362381402041,
+      "ndcg_at_10": 0.2602061256230515,
+      "mrr_at_10": 0.19900193211268352,
+      "evaluable_users": 22239,
+      "cold_targets": 2,
+      "mean_candidates": 247.60680724787554,
+      "min_candidates": 176,
+      "max_candidates": 261
+    }
+  ],
+  "runtime_seconds": 103.94600960000025,
+  "checkpoint_sha256": "e5473881a915e05a89a545492e9c6afd07dbf05184f0562e88b0b84014659eae",
+  "versions": {
+    "python": "3.14.3",
+    "numpy": "2.4.3"
+  },
+  "integrity": {
+    "learners": 22241,
+    "skills": 262,
+    "unique_edges": 320119,
+    "duplicate_edges": 0,
+    "evaluable_targets": 22239,
+    "cold_targets": 2,
+    "target_seen_overlap": 0,
+    "visible_targets_outside_catalog": 0,
+    "development_files_accessed": [
+      "development_graph_edges.parquet",
+      "development_catalog.parquet",
+      "validation_targets.parquet"
+    ]
+  },
+  "files_accessed": [
+    "development_graph_edges.parquet",
+    "development_catalog.parquet",
+    "validation_targets.parquet"
+  ]
+}

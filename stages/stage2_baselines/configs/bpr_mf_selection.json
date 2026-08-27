@@ -1,0 +1,24 @@
+{
+  "status": "FROZEN_FOR_STAGE2_COMPARISON",
+  "selection_metric": "validation NDCG@10",
+  "selected_run": "BPRMF_TUNE_004",
+  "selected_config": {
+    "embedding_dim": 64,
+    "learning_rate": 0.02,
+    "l2": 0.001,
+    "batch_size": 4096,
+    "max_epochs": 100,
+    "eval_every": 10,
+    "patience_evaluations": 3,
+    "min_delta": 0.00001
+  },
+  "tuning_budget": [
+    "BPRMF_TUNE_001",
+    "BPRMF_TUNE_002",
+    "BPRMF_TUNE_003",
+    "BPRMF_TUNE_004"
+  ],
+  "seed_used_for_selection": 20260827,
+  "caveat": "The selected run reached the predeclared epoch cap. The cap is retained to avoid opportunistic validation expansion.",
+  "test_accessed": false
+}

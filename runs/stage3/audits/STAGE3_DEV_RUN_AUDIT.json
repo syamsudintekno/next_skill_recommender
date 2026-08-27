@@ -1,0 +1,94 @@
+{
+  "audit_id": "STAGE3_DEV_RUN_AUDIT",
+  "created_date": "2026-08-27",
+  "status": "PASS_WITH_OPEN_DESIGN_ITEMS",
+  "scope": "Three development-seed implementation probes; not bounded tuning and not final results",
+  "runs_audited": [
+    "DRLGCN_LAMBDA0_DEV_20260827",
+    "DRLGCN_INTEGRATED_DEV_20260827",
+    "LIGHTGCN_POSTHOC_DEV_20260827"
+  ],
+  "firewall": {
+    "test_accessed": false,
+    "forbidden_files_accessed": [],
+    "allowed_files": [
+      "development_graph_edges.parquet",
+      "development_catalog.parquet",
+      "development_train_events.parquet",
+      "development_difficulty_inputs.parquet",
+      "development_ability_inputs.parquet",
+      "validation_targets.parquet"
+    ]
+  },
+  "integrity": {
+    "checkpoint_hashes_verified": true,
+    "history_epochs_per_run": 100,
+    "evaluation_epochs": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    "all_recorded_best_epochs_match_validation_argmax": true,
+    "all_best_epochs": 100,
+    "top10_exposure_count_per_run": 222410
+  },
+  "lambda_zero_equivalence": {
+    "reference_run": "LIGHTGCN_BOUND_004",
+    "checkpoint_sha256_identical": true,
+    "checkpoint_sha256": "18c492b58279b9e6a08990bfba3fde1e95ef1be232baaeb284a6729fea2d4a32",
+    "relevance_metrics_identical": true,
+    "recall_at_10": 0.4850038221143037,
+    "ndcg_at_10": 0.2860780240088867,
+    "mrr_at_10": 0.22530130822657465
+  },
+  "probe_results": {
+    "lambda_zero": {
+      "recall_at_10": 0.4850038221143037,
+      "ndcg_at_10": 0.2860780240088867,
+      "mrr_at_10": 0.22530130822657465,
+      "dvr_at_10": 0.18682613191852872,
+      "med_at_10": 0.016464028507471085,
+      "mean_squared_risk_at_10": 0.002323735039681196
+    },
+    "integrated_lambda_0_1": {
+      "recall_at_10": 0.48747695489905085,
+      "ndcg_at_10": 0.2831900474466853,
+      "mrr_at_10": 0.22071889295010838,
+      "dvr_at_10": 0.18362933321343464,
+      "med_at_10": 0.015806205570697784,
+      "mean_squared_risk_at_10": 0.0021934665273875,
+      "delta_from_lambda_zero": {
+        "recall_at_10": 0.0024731327847475337,
+        "ndcg_at_10": -0.002887976562201411,
+        "mrr_at_10": -0.004582415276466273,
+        "dvr_at_10": -0.003196798705094206,
+        "med_at_10": -0.0006578229367733002,
+        "mean_squared_risk_at_10": -0.0001302685122936964
+      }
+    },
+    "posthoc_gamma_0_1": {
+      "recall_at_10": 0.4850038221143037,
+      "ndcg_at_10": 0.2860155788885907,
+      "mrr_at_10": 0.2252182280949312,
+      "dvr_at_10": 0.18667775729508553,
+      "med_at_10": 0.01643340475857258,
+      "mean_squared_risk_at_10": 0.0023167056497186422,
+      "delta_from_lambda_zero": {
+        "recall_at_10": 0.0,
+        "ndcg_at_10": -0.000062445120296073,
+        "mrr_at_10": -0.00008308013164346,
+        "dvr_at_10": -0.000148374623443193,
+        "med_at_10": -0.000030623748898506,
+        "mean_squared_risk_at_10": -0.000007029389962554
+      }
+    }
+  },
+  "interpretation": [
+    "Lambda-zero equivalence is verified exactly for the selected seed and Stage-2 reference run.",
+    "The integrated probe shows a relevance-risk trade-off but is one open hyperparameter point, not a selected result.",
+    "The post-hoc probe weight is too weak to provide a meaningful matched comparator.",
+    "All runs reached the epoch cap; extending the cap after observing these results would violate the inherited tuning discipline."
+  ],
+  "open_items": [
+    "Freeze operational DVR@10 and MED@10 definitions.",
+    "Predeclare equal-sized integrated and post-hoc validation budgets, including tolerance and coefficient ranges.",
+    "Define a validation-only Pareto selection rule before additional runs.",
+    "Do not access test targets until all Stage-3 settings are frozen."
+  ]
+}

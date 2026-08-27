@@ -1,0 +1,36 @@
+.deps/
+__pycache__/
+*.pyc
+data/incoming/
+desktop.ini
+.venv/
+# Dependencies / Python
+.deps/
+**/__pycache__/
+*.pyc
+.venv/
+
+# Incoming/raw data
+data/incoming/
+
+# Generated canonical datasets
+data/canonical/*.parquet
+
+# Model checkpoints
+**/checkpoint.pt
+**/checkpoint.npz
+*.ckpt
+
+# Research source binaries
+sources/*.pdf
+sources/*.docx
+
+# Bundled audit artifacts
+stages/**/audit_bundle/*.zip
+
+# Windows
+desktop.ini
+Thumbs.db
+
+# Jupyter temporary files
+**/.ipynb_checkpoints/

@@ -1,0 +1,11 @@
+{
+  "status": "PARTIAL",
+  "source": "stages/stage1_data_design/stage1_proxy_audit.py EXPECTED constant",
+  "files": {
+    "development_train_events.parquet": "55877b74d20a68ee38dc6dab52e9af2f30daba448b92ad740cdad346c98d01b5",
+    "development_graph_edges.parquet": "2a3627073b3dfae4878f9e5f73ba5a9a23c60c4f80d8940a815a1a0699b03a17",
+    "development_ability_inputs.parquet": "1b0b50e2e21dd4a51b49daa8a23ca04c942b607edc72f324f677e9d632ae135a"
+  },
+  "verification_2026_08_27": "3/3 matched",
+  "warning": "This is not the complete 12-file Stage 1 artifact manifest."
+}

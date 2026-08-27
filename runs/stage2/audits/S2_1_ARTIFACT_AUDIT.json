@@ -1,0 +1,139 @@
+{
+  "scope": "structural_and_provenance_audit_only",
+  "note": "Parquet footers and raw bytes were inspected for row counts, schemas, and hashes. Test-target columns/rows were not decoded. This audit is separate from development runs.",
+  "manifest_comparison": "BLOCKED: manifest absent from supplied ZIP and workspace",
+  "artifacts": [
+    {
+      "file": "development_ability_inputs.parquet",
+      "rows": 320119,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string",
+        "n_events": "int64",
+        "successes": "double",
+        "any_success": "int8"
+      },
+      "sha256": "1b0b50e2e21dd4a51b49daa8a23ca04c942b607edc72f324f677e9d632ae135a"
+    },
+    {
+      "file": "development_catalog.parquet",
+      "rows": 262,
+      "schema": {
+        "skill_id": "string",
+        "user_support": "int64",
+        "event_support": "int64"
+      },
+      "sha256": "dafaf410d995cd9db1b341e207aea143362b605c89e3b392aea23b9093ee2b59"
+    },
+    {
+      "file": "development_difficulty_inputs.parquet",
+      "rows": 262,
+      "schema": {
+        "skill_id": "string",
+        "n_events": "int64",
+        "successes": "double",
+        "n_learners": "int64"
+      },
+      "sha256": "4c6072b7d6417bd017dc6c2e71008e31ed15722309ed2a81afe01420da270b3e"
+    },
+    {
+      "file": "development_graph_edges.parquet",
+      "rows": 320119,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string"
+      },
+      "sha256": "2a3627073b3dfae4878f9e5f73ba5a9a23c60c4f80d8940a815a1a0699b03a17"
+    },
+    {
+      "file": "development_train_events.parquet",
+      "rows": 2132943,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string",
+        "event_id": "string",
+        "event_time": "timestamp[us, tz=UTC]",
+        "correct_binary": "int8"
+      },
+      "sha256": "55877b74d20a68ee38dc6dab52e9af2f30daba448b92ad740cdad346c98d01b5"
+    },
+    {
+      "file": "final_ability_inputs.parquet",
+      "rows": 342360,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string",
+        "n_events": "int64",
+        "successes": "double",
+        "any_success": "int8"
+      },
+      "sha256": "d541bb4b54a60661f8f15368ba8e86af2b433b2c84a0abab6b27ad8ddcd98465"
+    },
+    {
+      "file": "final_catalog.parquet",
+      "rows": 264,
+      "schema": {
+        "skill_id": "string",
+        "user_support": "int64",
+        "event_support": "int64"
+      },
+      "sha256": "e9a37c8cb0ffbc70d3e7903d5c91266db8e0e9ce8a6b5710f06bae4d4a58c94d"
+    },
+    {
+      "file": "final_difficulty_inputs.parquet",
+      "rows": 264,
+      "schema": {
+        "skill_id": "string",
+        "n_events": "int64",
+        "successes": "double",
+        "n_learners": "int64"
+      },
+      "sha256": "567a2e21791a687fcbabb29309f912d08217f8d25c8fb230d46df7ecca99e795"
+    },
+    {
+      "file": "final_graph_edges.parquet",
+      "rows": 342360,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string"
+      },
+      "sha256": "faa60e66102a02224c431e10ad49b514c1f3a8641f64d7ed59477bc316cd998d"
+    },
+    {
+      "file": "final_train_events.parquet",
+      "rows": 2297527,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string",
+        "event_id": "string",
+        "event_time": "timestamp[us, tz=UTC]",
+        "correct_binary": "int8"
+      },
+      "sha256": "95852d146208ee3e3fed070f7b2a3819c153d150dfd7ce5e35ced7a0e2c65119"
+    },
+    {
+      "file": "test_targets.parquet",
+      "rows": 22241,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string",
+        "event_id": "string",
+        "event_time": "timestamp[us, tz=UTC]",
+        "globally_prefix_visible": "bool"
+      },
+      "sha256": "ead4fd56eacaf4b161626ead1abd4dddf885424e1ff6bb3c46efb45ce9c0044a"
+    },
+    {
+      "file": "validation_targets.parquet",
+      "rows": 22241,
+      "schema": {
+        "user_id": "string",
+        "skill_id": "string",
+        "event_id": "string",
+        "event_time": "timestamp[us, tz=UTC]",
+        "globally_prefix_visible": "bool"
+      },
+      "sha256": "0c1ffac21f115acc3f88707c81f1f9ee0403a7cfb40529f438667d9996d8664e"
+    }
+  ]
+}

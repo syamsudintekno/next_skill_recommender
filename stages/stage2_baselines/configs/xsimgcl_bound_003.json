@@ -1,0 +1,20 @@
+{
+  "run_id": "XSIMGCL_BOUND_003",
+  "seed": 20260827,
+  "embedding_dim": 64,
+  "layers": 2,
+  "layer_cl": 1,
+  "l2": 0.0001,
+  "eps": 0.2,
+  "temperature": 0.2,
+  "ssl_sample_size": 1024,
+  "batch_size": 65536,
+  "steps_per_epoch": 5,
+  "max_epochs": 100,
+  "eval_every": 10,
+  "patience_evaluations": 4,
+  "min_delta": 1e-05,
+  "cpu_threads": 4,
+  "learning_rate": 0.002,
+  "cl_weight": 0.05
+}

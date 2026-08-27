@@ -1,0 +1,39 @@
+{
+  "audit_id": "STAGE3_LOADER_OBJECTIVE_AUDIT",
+  "created_at_utc": "2026-08-27T11:00:07.535377+00:00",
+  "status": "PASS",
+  "scope": "development prefix only; validation and test targets not read",
+  "loader": {
+    "users": 22241,
+    "items": 262,
+    "difficulty_min": 0.045610588043928146,
+    "difficulty_max": 0.9201841354370117,
+    "ability_min": 0.30587708950042725,
+    "ability_max": 0.45931580662727356,
+    "proxy": {
+      "alpha": 3.7439989264232345,
+      "beta": 2.6928005966072233,
+      "population_ability": 0.3591255542824983,
+      "shrinkage_kappa": 15.472902777757824,
+      "learners_without_success": 620,
+      "first_exposure_rows": 320119,
+      "difficulty_input_rows": 262,
+      "ability_input_rows": 320119
+    },
+    "files_accessed": [
+      "development_graph_edges.parquet",
+      "development_catalog.parquet",
+      "development_train_events.parquet",
+      "development_difficulty_inputs.parquet",
+      "development_ability_inputs.parquet"
+    ]
+  },
+  "objective": {
+    "expected_risk_loss": 0.18232618272304535,
+    "integrated_gradient_l1": 0.39598894119262695,
+    "integrated_gradient_nonzero": true,
+    "fixed_risk_sum_requires_grad": false,
+    "lambda_zero_exact_skip_contract": true
+  },
+  "test_accessed": false
+}

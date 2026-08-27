@@ -1,0 +1,54 @@
+[
+  {
+    "run_id": "XSIMGCL_BOUND_001",
+    "best_epoch": 10,
+    "recall_at_10": 0.43657538558388415,
+    "ndcg_at_10": 0.24388000663653286,
+    "mrr_at_10": 0.1854611375554314,
+    "evaluable_users": 22239,
+    "cold_targets": 2,
+    "mean_candidates": 247.60680724787554,
+    "min_candidates": 176,
+    "max_candidates": 261,
+    "runtime_seconds": 193.9387784999999
+  },
+  {
+    "run_id": "XSIMGCL_BOUND_002",
+    "best_epoch": 100,
+    "recall_at_10": 0.4450739691532893,
+    "ndcg_at_10": 0.2772000779219768,
+    "mrr_at_10": 0.2256030982322632,
+    "evaluable_users": 22239,
+    "cold_targets": 2,
+    "mean_candidates": 247.60680724787554,
+    "min_candidates": 176,
+    "max_candidates": 261,
+    "runtime_seconds": 392.0795715000022
+  },
+  {
+    "run_id": "XSIMGCL_BOUND_003",
+    "best_epoch": 100,
+    "recall_at_10": 0.4600026979630379,
+    "ndcg_at_10": 0.26100832163698123,
+    "mrr_at_10": 0.2003826039911295,
+    "evaluable_users": 22239,
+    "cold_targets": 2,
+    "mean_candidates": 247.60680724787554,
+    "min_candidates": 176,
+    "max_candidates": 261,
+    "runtime_seconds": 380.02913120000085
+  },
+  {
+    "run_id": "XSIMGCL_BOUND_004",
+    "best_epoch": 100,
+    "recall_at_10": 0.4801474886460722,
+    "ndcg_at_10": 0.29489784137557196,
+    "mrr_at_10": 0.23790762973954663,
+    "evaluable_users": 22239,
+    "cold_targets": 2,
+    "mean_candidates": 247.60680724787554,
+    "min_candidates": 176,
+    "max_candidates": 261,
+    "runtime_seconds": 374.11216539999805
+  }
+]
