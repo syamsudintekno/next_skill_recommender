@@ -1,0 +1,20 @@
+{
+  "run_id": "BPR_MF_FINAL_20260830",
+  "family": "bpr_mf",
+  "seed": 20260830,
+  "status": "TRAINING_COMPLETE_TEST_NOT_ACCESSED",
+  "completed_epochs": 100,
+  "checkpoint_sha256": "f26f70b802c5b3d9747efcdd41e4e2f55208972c2c0dbea137d6a77eaa4a5a3e",
+  "test_accessed": false,
+  "files_accessed": [
+    "final_graph_edges.parquet",
+    "final_catalog.parquet"
+  ],
+  "runtime_seconds": 168.23298509999995,
+  "created_at_utc": "2026-08-28T11:13:58.811612+00:00",
+  "versions": {
+    "python": "3.14.3",
+    "numpy": "2.4.3",
+    "torch": "2.13.0+cpu"
+  }
+}

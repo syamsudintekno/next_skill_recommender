@@ -1,0 +1,20 @@
+{
+  "run_id": "XSIMGCL_FINAL_20260830",
+  "family": "xsimgcl",
+  "seed": 20260830,
+  "status": "TRAINING_COMPLETE_TEST_NOT_ACCESSED",
+  "completed_epochs": 100,
+  "checkpoint_sha256": "7aaa4f731e10fa873ce44cde36a8b17de54e92ab390b5e25612de8981e73a468",
+  "test_accessed": false,
+  "files_accessed": [
+    "final_graph_edges.parquet",
+    "final_catalog.parquet"
+  ],
+  "runtime_seconds": 399.8782240999999,
+  "created_at_utc": "2026-08-28T12:04:06.585063+00:00",
+  "versions": {
+    "python": "3.14.3",
+    "numpy": "2.4.3",
+    "torch": "2.13.0+cpu"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "run_id": "INTEGRATED_ASYMMETRIC_SQUARED_FINAL_20260831",
+  "family": "integrated_asymmetric_squared",
+  "seed": 20260831,
+  "status": "TRAINING_COMPLETE_TEST_NOT_ACCESSED",
+  "completed_epochs": 100,
+  "checkpoint_sha256": "08ce9b9d777db9aba47554ffc9dd1abf6b85479a4004a73d00b024224fda2f63",
+  "test_accessed": false,
+  "files_accessed": [
+    "final_graph_edges.parquet",
+    "final_catalog.parquet",
+    "final_train_events.parquet",
+    "final_difficulty_inputs.parquet",
+    "final_ability_inputs.parquet"
+  ],
+  "runtime_seconds": 345.0333154,
+  "created_at_utc": "2026-08-28T13:57:02.458085+00:00",
+  "versions": {
+    "python": "3.14.3",
+    "numpy": "2.4.3",
+    "torch": "2.13.0+cpu"
+  }
+}

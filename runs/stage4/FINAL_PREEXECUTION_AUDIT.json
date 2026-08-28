@@ -1,0 +1,26 @@
+{
+  "audit_id": "FINAL_PREEXECUTION_AUDIT",
+  "created_date": "2026-08-28",
+  "status": "PASS_READY_FOR_ONE_TIME_TEST",
+  "training_runs_expected": 20,
+  "training_runs_valid": 20,
+  "completed_epochs_required": 100,
+  "checkpoint_hashes_verified": 20,
+  "training_validation_or_test_access_violations": [],
+  "global_training_barrier": "PASS",
+  "evaluator_preflight": "PASS_NO_TEST_ACCESS",
+  "eligible_output_count": 26,
+  "eligible_outputs": {
+    "popularity": 1,
+    "bpr_mf": 5,
+    "lightgcn": 5,
+    "xsimgcl": 5,
+    "integrated_asymmetric_squared": 5,
+    "posthoc_asymmetric_squared": 5
+  },
+  "existing_test_lock": false,
+  "existing_final_result": false,
+  "test_accessed": false,
+  "automated_tests_passed": 18,
+  "authorization": "User may now execute evaluate_final_once.py exactly once, followed by summarize_final.py"
+}

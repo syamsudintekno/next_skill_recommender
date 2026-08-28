@@ -1,0 +1,20 @@
+{
+  "run_id": "LIGHTGCN_FINAL_20260828",
+  "family": "lightgcn",
+  "seed": 20260828,
+  "status": "TRAINING_COMPLETE_TEST_NOT_ACCESSED",
+  "completed_epochs": 100,
+  "checkpoint_sha256": "a45a1223070cfb907f8af9ff9603f52124fb052ea9e70b63d1f21b57171bde92",
+  "test_accessed": false,
+  "files_accessed": [
+    "final_graph_edges.parquet",
+    "final_catalog.parquet"
+  ],
+  "runtime_seconds": 234.33436599999982,
+  "created_at_utc": "2026-08-28T11:25:16.722130+00:00",
+  "versions": {
+    "python": "3.14.3",
+    "numpy": "2.4.3",
+    "torch": "2.13.0+cpu"
+  }
+}

@@ -74,3 +74,13 @@
 - **FACT — VALIDATION:** symmetric-squared slightly raises NDCG and MRR but also raises DVR, MED, and squared risk relative to asymmetric-squared; Recall is not clearly separated.
 - **DECISION — LOCKED:** asymmetric-squared remains selected. Ablation results cannot trigger reselection, and the one-sided form matches the stated overchallenge construct.
 - **STAGE STATUS — COMPLETE:** Stage 3 development, bounded selection, five-seed validation, τ sensitivity, and risk-form ablations are complete. The next gate is a frozen final-experiment and one-time test protocol; test targets remain unopened.
+
+## 2026-08-28 — Final experiment freeze
+
+- **DECISION — LOCKED:** final eligible methods, five-seed policy, 100-epoch fixed training budget, final-prefix inputs, candidate set, metrics, comparisons, and one-time test access are frozen in `stages/stage4_final/configs/final_protocol_manifest.json`.
+- **DECISION — LOCKED:** test targets may be read only after training and checkpoint persistence for a model seed. Test evaluation is single-use and cannot trigger retraining or any analytical choice.
+- **DECISION — REJECTED:** final test evaluation of tuning cells, τ-sensitivity cells, risk-form ablations, or a duplicate λd=0 model.
+- **DECISION — REVISED/LOCKED:** the complete hash set from the earlier structural audit is now the immutable pre-test byte snapshot. This controls drift but does not repair or replace the missing original Stage 1 handoff manifest; that provenance limitation remains reportable.
+- **EXECUTION STATUS:** final runner implementation and safeguard audit remain pending; test access has not been authorized or performed.
+- **FACT — VERIFIED:** the isolated final loader has no generic targets method and rejects test access unless a persisted checkpoint and matching 100-epoch completion receipt are present. Safeguard tests pass; test execution remains disabled pending the complete runner and summarizer.
+- **FINAL GATE — PASS/READY:** all 20 fixed-epoch training runs passed receipt, checkpoint-hash, epoch-count, and no-target-access checks. Evaluator preflight passed without test access; the frozen one-time batch evaluation is now eligible for user execution.

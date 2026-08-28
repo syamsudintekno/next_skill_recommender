@@ -14,3 +14,4 @@
 - Audited τ-sensitivity results were logged as validation-only evidence; no test result or final manuscript claim was added.
 - Risk-form ablation protocol was frozen with target-free scale matching; no ablation result or manuscript claim was added.
 - Audited five-seed risk-form ablation results were logged as validation-only evidence; no test result or final manuscript claim was added.
+- Final experiment and one-time test protocol was frozen; no final training, test result, or manuscript claim was added.

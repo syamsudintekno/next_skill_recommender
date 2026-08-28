@@ -178,3 +178,23 @@
 - **INFERENCE — VALIDATION ONLY:** linear is more conservative but loses ranking quality; symmetric slightly improves ranking quality while worsening overchallenge risk. Neither universally dominates the frozen asymmetric-squared formulation.
 - Selected settings remain unchanged. No test or `final_*` artifact was accessed.
 - Trace: `runs/stage3/STAGE3_RISK_ABLATIONS.json` and `runs/stage3/audits/STAGE3_RISK_ABLATIONS_AUDIT.json`.
+
+## Final experiment protocol freeze — 2026-08-28
+
+- Stage 3 development is complete and the final protocol is frozen before runner execution.
+- Eligible final methods: Popularity, BPR-MF, LightGCN, XSimGCL, integrated asymmetric-squared LightGCN, and post-hoc asymmetric-squared LightGCN.
+- Training uses the final prefix for exactly 100 epochs without validation or early stopping; each stochastic method uses the five established seeds.
+- Test evaluation is permitted only after a checkpoint is saved and only once per eligible model seed. No sensitivity or tuning cell is eligible.
+- The 12 hashes from the earlier footer/byte-level structural audit are frozen as a pre-test drift guard. The absent original Stage 1 manifest remains an explicit provenance limitation.
+- No final training or test evaluation was performed by this freeze step.
+- Manifest: `stages/stage4_final/configs/final_protocol_manifest.json`.
+
+## Final-access safeguard implementation — 2026-08-28
+
+- Added an isolated final-prefix loader with no unguarded targets method.
+- Test targets require a non-empty persisted checkpoint plus a matching receipt recording exactly 100 completed epochs, checkpoint SHA-256, `test_accessed=false`, and state `TRAINING_COMPLETE_TEST_NOT_ACCESSED`.
+- Failed authorization does not append `test_targets.parquet` to the loader access ledger.
+- Sixteen automated Stage 2–4 tests passed. No final training or test evaluation was performed.
+- Target-free final training infrastructure now prepares 20 frozen configurations and enforces exactly 100 epochs without validation or target loading. A resumable family runner was added; 18 automated tests pass. No final training was executed by Codex.
+- Final training completed externally: 20/20 receipts passed the 100-epoch, checkpoint-hash, non-target-access, and global-barrier audit. The one-time batch evaluator and result summarizer were implemented but not executed; test targets remain unopened.
+- Final evaluator preflight passed with 20 receipts, no prior lock/result, and `test_accessed=false`; 18 automated tests passed. Trace: `runs/stage4/FINAL_PREEXECUTION_AUDIT.json`.

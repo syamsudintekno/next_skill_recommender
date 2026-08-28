@@ -1,0 +1,62 @@
+{
+  "status": "FROZEN_BEFORE_TEST_ACCESS",
+  "frozen_date": "2026-08-28",
+  "purpose": "One-time final-prefix training and test evaluation",
+  "provenance": {
+    "stage1_original_manifest_available": false,
+    "decision": "Use the complete byte-hash snapshot recorded by the pre-existing structural audit as the immutable pre-test gate; do not mislabel it as the missing original Stage 1 manifest.",
+    "source": "runs/stage2/audits/S2_1_ARTIFACT_AUDIT.json",
+    "limitation": "Equality to the missing original Stage 1 handoff manifest cannot be established."
+  },
+  "artifact_sha256": {
+    "development_ability_inputs.parquet": "1b0b50e2e21dd4a51b49daa8a23ca04c942b607edc72f324f677e9d632ae135a",
+    "development_catalog.parquet": "dafaf410d995cd9db1b341e207aea143362b605c89e3b392aea23b9093ee2b59",
+    "development_difficulty_inputs.parquet": "4c6072b7d6417bd017dc6c2e71008e31ed15722309ed2a81afe01420da270b3e",
+    "development_graph_edges.parquet": "2a3627073b3dfae4878f9e5f73ba5a9a23c60c4f80d8940a815a1a0699b03a17",
+    "development_train_events.parquet": "55877b74d20a68ee38dc6dab52e9af2f30daba448b92ad740cdad346c98d01b5",
+    "final_ability_inputs.parquet": "d541bb4b54a60661f8f15368ba8e86af2b433b2c84a0abab6b27ad8ddcd98465",
+    "final_catalog.parquet": "e9a37c8cb0ffbc70d3e7903d5c91266db8e0e9ce8a6b5710f06bae4d4a58c94d",
+    "final_difficulty_inputs.parquet": "567a2e21791a687fcbabb29309f912d08217f8d25c8fb230d46df7ecca99e795",
+    "final_graph_edges.parquet": "faa60e66102a02224c431e10ad49b514c1f3a8641f64d7ed59477bc316cd998d",
+    "final_train_events.parquet": "95852d146208ee3e3fed070f7b2a3819c153d150dfd7ce5e35ced7a0e2c65119",
+    "test_targets.parquet": "ead4fd56eacaf4b161626ead1abd4dddf885424e1ff6bb3c46efb45ce9c0044a",
+    "validation_targets.parquet": "0c1ffac21f115acc3f88707c81f1f9ee0403a7cfb40529f438667d9996d8664e"
+  },
+  "data_contract": {
+    "training_prefix": ["final_graph_edges.parquet", "final_catalog.parquet", "final_train_events.parquet", "final_difficulty_inputs.parquet", "final_ability_inputs.parquet"],
+    "evaluation_targets": "test_targets.parquet",
+    "candidate_set": "final catalog minus each learner's final-prefix seen skills",
+    "ranking": "full ranking",
+    "k": 10,
+    "cold_target_policy": "report count and exclude globally prefix-invisible targets from relevance denominators",
+    "test_read_timing": "only after a model seed has completed all fixed training epochs and its checkpoint has been saved",
+    "test_reuse": "one evaluation per completed model seed; no model selection, retry, or configuration revision from test outcomes"
+  },
+  "seeds": [20260827, 20260828, 20260829, 20260830, 20260831],
+  "fixed_training_epochs": 100,
+  "epoch_rationale": "All selected stochastic development configurations selected epoch 100 under the frozen cap; final training therefore uses exactly 100 epochs without validation or early stopping.",
+  "models": {
+    "popularity": {"seeds": [20260827], "deterministic": true, "role": "non-personalized baseline"},
+    "bpr_mf": {"embedding_dim": 64, "learning_rate": 0.02, "l2": 0.001, "batch_size": 4096},
+    "lightgcn": {"embedding_dim": 64, "layers": 1, "learning_rate": 0.005, "l2": 0.0001, "batch_size": 65536, "steps_per_epoch": 5, "cpu_threads": 4},
+    "xsimgcl": {"embedding_dim": 64, "layers": 2, "layer_cl": 1, "learning_rate": 0.002, "l2": 0.0001, "cl_weight": 0.2, "eps": 0.2, "temperature": 0.2, "ssl_sample_size": 1024, "batch_size": 65536, "steps_per_epoch": 5, "cpu_threads": 4},
+    "integrated_asymmetric_squared": {"base": "lightgcn", "difficulty_weight": 0.03, "tolerance": 0.1, "temperature": 0.2, "risk_scale": 1.0},
+    "posthoc_asymmetric_squared": {"base": "same-seed final LightGCN checkpoint", "rerank_weight": 5.0, "tolerance": 0.1}
+  },
+  "reuse": {
+    "lightgcn_checkpoint_for_posthoc": true,
+    "lightgcn_checkpoint_for_lambda_zero": true,
+    "separate_lambda_zero_final_run": false
+  },
+  "metrics": ["Recall@10", "NDCG@10", "MRR@10", "DVR@10", "MED@10", "mean squared risk@10", "exposure distribution", "runtime"],
+  "reporting": {
+    "stochastic_models": "mean and sample SD across five seeds",
+    "primary_paired_directions": ["integrated minus LightGCN", "posthoc minus LightGCN", "posthoc minus integrated"],
+    "paired_interval": "two-sided 95% paired-t confidence interval across matched seeds",
+    "popularity": "single deterministic estimate; no seed-based interval",
+    "interpretation": "effect sizes and intervals; test results must not alter any model or hyperparameter"
+  },
+  "excluded_from_final_test": ["tau sensitivity variants", "asymmetric-linear ablation", "symmetric-squared ablation", "rejected tuning configurations"],
+  "execution_state": "NOT_STARTED",
+  "test_accessed": false
+}

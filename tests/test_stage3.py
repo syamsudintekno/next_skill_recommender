@@ -108,5 +108,32 @@ class Stage3ObjectiveTests(unittest.TestCase):
         )
 
 
+class FinalAccessGateTests(unittest.TestCase):
+    def test_final_loader_has_no_unguarded_targets_method(self):
+        from src.data import FinalExperimentData
+        self.assertFalse(hasattr(FinalExperimentData, "targets"))
+
+    def test_test_targets_requires_checkpoint_and_receipt(self):
+        from tempfile import TemporaryDirectory
+        from src.data import FinalExperimentData
+        with TemporaryDirectory() as folder:
+            root = Path(folder)
+            loader = FinalExperimentData(root)
+            with self.assertRaises(PermissionError):
+                loader.test_targets(checkpoint=root / "checkpoint.pt", training_receipt=root / "training_complete.json")
+            self.assertNotIn("test_targets.parquet", loader.accessed)
+
+    def test_training_preflight_excludes_test_hash(self):
+        from stages.stage4_final.final_protocol import verify_artifact_snapshot
+        checked = verify_artifact_snapshot(include_test=False)
+        self.assertNotIn("test_targets.parquet", checked)
+        self.assertEqual(len(checked), 11)
+
+    def test_global_barrier_validates_every_training_receipt(self):
+        from stages.stage4_final.final_protocol import assert_global_training_barrier
+        receipts = assert_global_training_barrier()
+        self.assertEqual(len(receipts), 20)
+
+
 if __name__ == "__main__":
     unittest.main()

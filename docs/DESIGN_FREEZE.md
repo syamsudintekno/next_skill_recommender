@@ -59,3 +59,15 @@ This file records the Stage 2 carry-forward only; it does not revise any frozen 
 - **RATIONALE — LOCKED:** scale matching prevents the ablation from merely comparing different numerical penalty magnitudes.
 - **LOCKED:** report mean±sample SD, paired ablation-minus-reference 95% CIs, and runtime. Ablations cannot revise selected settings.
 - **FIREWALL:** test and `final_*` artifacts remain closed until ablations and Stage 3 closure audit complete.
+
+## Final experiment protocol freeze — 2026-08-28
+
+- **LOCKED:** final training uses the frozen final prefix and exactly 100 epochs without validation evaluation, checkpoint selection, or early stopping.
+- **LOCKED:** eligible outputs are Popularity, BPR-MF, LightGCN, XSimGCL, integrated asymmetric-squared LightGCN, and asymmetric-squared post-hoc LightGCN. Sensitivity, risk-form ablation, and rejected tuning cells do not receive test evaluation.
+- **LOCKED:** stochastic models use seeds 20260827–20260831. Popularity is deterministic and evaluated once.
+- **LOCKED:** post-hoc reuses the same-seed final LightGCN checkpoint. A separate final λd=0 run is prohibited because it is equivalent to LightGCN.
+- **LOCKED:** the candidate set is the final catalog minus each learner's final-prefix seen skills, using full ranking at K=10 and the frozen cold-target rule.
+- **LOCKED:** each model-seed checkpoint is saved before `test_targets.parquet` is opened, then evaluated exactly once. Test outcomes cannot cause retries, reselection, or configuration changes.
+- **LOCKED:** report all frozen relevance and pedagogy metrics, complete exposure distributions, runtime, mean±sample SD, and matched-seed paired-t 95% CIs.
+- **PROVENANCE LIMITATION:** the original complete Stage 1 manifest is unavailable. The 12 hashes recorded earlier in `S2_1_ARTIFACT_AUDIT.json` are frozen as the immutable pre-test snapshot, but are not represented as the missing original manifest.
+- Manifest: `stages/stage4_final/configs/final_protocol_manifest.json`.
