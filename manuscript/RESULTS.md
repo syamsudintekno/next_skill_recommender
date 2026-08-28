@@ -2,13 +2,13 @@
 
 ## Final test performance
 
-Table 1 reports the locked test results. All stochastic methods were trained with
+Table 2 reports the locked test results. All stochastic methods were trained with
 five matched random seeds and are reported as mean ± sample standard deviation.
 Popularity is deterministic and was evaluated once. The final evaluation
 included 22,241 learners, no globally prefix-invisible test targets, 264 candidate
 skills, and an average of 248.61 unseen candidates per learner.
 
-**Table 1. Final Top-10 relevance and overchallenge results.**
+**Table 2. Final Top-10 relevance and overchallenge results.**
 
 _Reproducibility source: `manuscript/generated/RESULTS_TABLES.md`, generated
 directly from the locked final summary._
@@ -45,12 +45,12 @@ both objectives.
 
 ## RQ2: Integrated regularization versus post-hoc reranking
 
-Table 2 reports matched-seed differences for the two difficulty-control
+Table 3 reports matched-seed differences for the two difficulty-control
 strategies. Negative risk differences favor the post-hoc method, whereas
 negative relevance differences indicate a loss relative to the integrated
 model.
 
-**Table 2. Paired post-hoc minus integrated differences on the final test set.**
+**Table 3. Paired post-hoc minus integrated differences on the final test set.**
 
 _Reproducibility source: `manuscript/generated/RESULTS_TABLES.md`._
 
