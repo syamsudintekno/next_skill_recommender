@@ -71,3 +71,9 @@ This file records the Stage 2 carry-forward only; it does not revise any frozen 
 - **LOCKED:** report all frozen relevance and pedagogy metrics, complete exposure distributions, runtime, mean±sample SD, and matched-seed paired-t 95% CIs.
 - **PROVENANCE LIMITATION:** the original complete Stage 1 manifest is unavailable. The 12 hashes recorded earlier in `S2_1_ARTIFACT_AUDIT.json` are frozen as the immutable pre-test snapshot, but are not represented as the missing original manifest.
 - Manifest: `stages/stage4_final/configs/final_protocol_manifest.json`.
+
+## Final experiment completion — 2026-08-28
+
+- **COMPLETE/LOCKED:** all frozen final-prefix trainings and the single batch test evaluation completed and passed audit.
+- **LOCKED:** `STAGE4_FINAL_RESULTS.json` and `STAGE4_FINAL_SUMMARY.json` are the sole final numerical sources. No test rerun, model reselection, or hyperparameter revision is permitted.
+- **LOCKED:** final interpretation is an empirical relevance–overchallenge trade-off. Integrated regularization is not universally superior to post-hoc reranking.

@@ -84,3 +84,8 @@
 - **EXECUTION STATUS:** final runner implementation and safeguard audit remain pending; test access has not been authorized or performed.
 - **FACT — VERIFIED:** the isolated final loader has no generic targets method and rejects test access unless a persisted checkpoint and matching 100-epoch completion receipt are present. Safeguard tests pass; test execution remains disabled pending the complete runner and summarizer.
 - **FINAL GATE — PASS/READY:** all 20 fixed-epoch training runs passed receipt, checkpoint-hash, epoch-count, and no-target-access checks. Evaluator preflight passed without test access; the frozen one-time batch evaluation is now eligible for user execution.
+- **FINAL STATUS — COMPLETE/LOCKED:** the one-time test evaluation completed for all 26 eligible outputs and passed lock, access-ledger, seed, candidate, exposure, aggregation, and paired-comparison audit. No rerun, reselection, or retraining is permitted.
+- **FACT — FINAL:** integrated asymmetric-squared regularization gives a small but consistent reduction in DVR, MED, and squared risk versus LightGCN, with lower NDCG and MRR and no clearly separated Recall difference.
+- **FACT — FINAL:** post-hoc reranking gives a larger risk reduction than integrated, while integrated retains higher Recall and NDCG; their MRR difference is not clearly separated.
+- **FACT — FINAL:** BPR-MF has the strongest mean Recall/NDCG, whereas XSimGCL has the strongest mean MRR and the highest overchallenge metrics among learned models.
+- **CLAIM GUARD — LOCKED:** results support a relevance-overchallenge trade-off and implementation-level integrated control; they do not support universal superiority, causal learning benefit, or learning-outcome claims.

@@ -17,9 +17,10 @@ Research code for the JOIN paper **“Balancing Relevance and Overchallenge in G
 ## Current status
 
 - Stage 1: frozen.
-- Stage 2: conditionally complete; the complete 12-file Stage 1 hash manifest remains open.
-- Stage 3: development-only loader/objective audit passed; runners are ready for local execution.
-- Test targets are not available to development runners.
+- Stage 2: conditionally complete; the original complete 12-file Stage 1 handoff manifest remains unavailable.
+- Stage 3: complete and frozen after multi-seed validation, sensitivity, and risk-form ablations.
+- Stage 4: one-time final test evaluation complete and locked; no rerun or reselection is permitted.
+- Test targets remain unavailable to all development runners.
 
 Run Stage 2 checks from the project root with:
 

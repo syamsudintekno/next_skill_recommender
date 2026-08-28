@@ -198,3 +198,13 @@
 - Target-free final training infrastructure now prepares 20 frozen configurations and enforces exactly 100 epochs without validation or target loading. A resumable family runner was added; 18 automated tests pass. No final training was executed by Codex.
 - Final training completed externally: 20/20 receipts passed the 100-epoch, checkpoint-hash, non-target-access, and global-barrier audit. The one-time batch evaluator and result summarizer were implemented but not executed; test targets remain unopened.
 - Final evaluator preflight passed with 20 receipts, no prior lock/result, and `test_accessed=false`; 18 automated tests passed. Trace: `runs/stage4/FINAL_PREEXECUTION_AUDIT.json`.
+
+## One-time final test evaluation — 2026-08-28
+
+- Status: completed once and locked; 26 eligible outputs, including five matched seeds for every stochastic family and one deterministic Popularity result.
+- Test access ledger contains one `test_targets.parquet` occurrence. All results share 22,241 evaluable users, zero cold targets, mean 248.606807 candidates, 264 catalog items, and 222,410 Top-10 exposures.
+- Recomputed means and sample SDs match `STAGE4_FINAL_SUMMARY.json` exactly.
+- Integrated minus LightGCN: Recall +0.000180 (95% CI [-0.000530, +0.000889]); NDCG -0.000874 ([-0.001289, -0.000459]); DVR -0.001103 ([-0.001265, -0.000942]); squared risk -0.0000510 ([-0.0000591, -0.0000430]).
+- Post-hoc minus integrated: Recall -0.002392 (95% CI [-0.003077, -0.001707]); NDCG -0.000679 ([-0.001085, -0.000274]); DVR -0.005960 ([-0.006391, -0.005529]); squared risk -0.000304 ([-0.000323, -0.000285]).
+- **INFERENCE — FINAL:** integrated control provides a modest accuracy-risk trade-off relative to LightGCN; post-hoc is more conservative but sacrifices more Recall/NDCG. No method universally dominates.
+- Trace: `runs/stage4/final/STAGE4_FINAL_RESULTS.json`, `STAGE4_FINAL_SUMMARY.json`, and `STAGE4_FINAL_AUDIT.json`.

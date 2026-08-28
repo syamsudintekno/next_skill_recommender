@@ -1,0 +1,25 @@
+{
+  "audit_id": "STAGE4_FINAL_AUDIT",
+  "created_date": "2026-08-28",
+  "status": "PASS_FINAL_RESULTS_LOCKED",
+  "lock_status": "TEST_ACCESS_COMPLETE",
+  "result_status": "FINAL_TEST_EVALUATED_ONCE",
+  "result_count": 26,
+  "test_reads_reported": 1,
+  "test_target_access_ledger_occurrences": 1,
+  "families": {"popularity": 1, "bpr_mf": 5, "lightgcn": 5, "xsimgcl": 5, "integrated_asymmetric_squared": 5, "posthoc_asymmetric_squared": 5},
+  "matched_seeds": [20260827, 20260828, 20260829, 20260830, 20260831],
+  "evaluation_contract": {"evaluable_users": 22241, "cold_targets": 0, "mean_candidates": 248.606807247876, "catalog_items": 264, "top10_exposures_per_result": 222410},
+  "summary_recomputed": true,
+  "maximum_mean_or_sample_sd_recomputation_delta": 0.0,
+  "test_accessed": true,
+  "retraining_or_reselection_permitted": false,
+  "primary_findings": [
+    "Integrated minus LightGCN reduces DVR by 0.001103 and squared risk by 0.0000510, while NDCG decreases by 0.000874 and MRR by 0.001192; the Recall interval includes zero.",
+    "Post-hoc minus LightGCN reduces DVR by 0.007064 and squared risk by 0.000355, while Recall decreases by 0.002212 and NDCG by 0.001553.",
+    "Post-hoc minus integrated reduces DVR by 0.005960 and squared risk by 0.000304, while Recall decreases by 0.002392 and NDCG by 0.000679; the MRR interval includes zero.",
+    "BPR-MF has the highest mean Recall and NDCG; XSimGCL has the highest mean MRR but substantially higher overchallenge risk among learned models.",
+    "Popularity has the lowest risk but much lower relevance and is not evidence of a useful personalized trade-off."
+  ],
+  "interpretation": "The final evidence supports an accuracy-overchallenge trade-off, not universal dominance of integrated regularization over post-hoc reranking."
+}

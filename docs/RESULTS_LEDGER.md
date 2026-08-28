@@ -101,3 +101,20 @@ and does not revise the frozen τ=0.1 setting.
 These scale-matched OFAT comparisons are validation-only. Linear reduces risk
 with lower NDCG/MRR; symmetric slightly improves NDCG/MRR while increasing
 overchallenge risk. They do not reopen the frozen objective or coefficients.
+
+## Final test results — five-seed summary
+
+| Method | Recall@10 mean±SD | NDCG@10 mean±SD | MRR@10 mean±SD | DVR@10 mean±SD | MED@10 mean±SD | Squared risk@10 mean±SD |
+|---|---:|---:|---:|---:|---:|---:|
+| Popularity (deterministic) | 0.287847 | 0.145124 | 0.101892 | 0.076485 | 0.002479 | 0.000228 |
+| BPR-MF | 0.543186±0.000981 | 0.321878±0.000825 | 0.254217±0.000920 | 0.180145±0.001170 | 0.014737±0.000048 | 0.002077±0.000021 |
+| LightGCN | 0.497792±0.004085 | 0.293262±0.001625 | 0.230797±0.001494 | 0.187554±0.001649 | 0.015498±0.000114 | 0.002171±0.000021 |
+| XSimGCL | 0.509590±0.006555 | 0.316049±0.007898 | 0.256290±0.008427 | 0.221725±0.005924 | 0.021326±0.000748 | 0.003899±0.000149 |
+| Integrated asymmetric-squared | 0.497972±0.003583 | 0.292389±0.001591 | 0.229605±0.001465 | 0.186450±0.001694 | 0.015284±0.000120 | 0.002120±0.000022 |
+| Post-hoc asymmetric-squared | 0.495580±0.004100 | 0.291709±0.001557 | 0.229462±0.001360 | 0.180490±0.001547 | 0.014018±0.000086 | 0.001816±0.000026 |
+
+Paired final comparisons show integrated regularization reduces all frozen risk
+metrics relative to LightGCN but lowers NDCG and MRR; its Recall interval
+includes zero. Post-hoc produces a larger risk reduction than either LightGCN
+or integrated, while losing Recall and NDCG. These locked test results cannot
+be used for reselection or retraining.
