@@ -25,3 +25,8 @@
 - Added the first English Conclusion draft at `manuscript/CONCLUSION.md`. It answers RQ1–RQ3 from the locked final and validation-only evidence, preserves the non-dominance interpretation, and limits future-work claims to proxy validation, external replication, scalability, and prospective evaluation.
 - Added the first English Abstract and keywords draft at `manuscript/ABSTRACT.md`. Every reported quantity is traced to the locked Stage 4 summary; validation-only sensitivity is labeled, and the closing claim is restricted to offline exposure trade-offs.
 - Added verified drafting references, a deterministic full-manuscript builder and generated `manuscript/FULL_MANUSCRIPT_DRAFT.md`, plus `docs/MANUSCRIPT_INTEGRATION_AUDIT.md`. The audit separates completed scientific drafting from unresolved dataset provenance, literature coverage, author metadata, availability statements, JOIN formatting, and figure work.
+- Added reproducible final NDCG–DVR and exposure-concentration figures in PNG/PDF/SVG formats. Figure data record the locked source hashes, full derived exposure curves, and no-target/no-training guards; Results and the integration audit were updated without rerunning test evaluation.
+
+## 2026-08-29
+
+- Resumed interrupted figure QA after the workstation shutdown. Corrected overlapping labels in Figure 1, replaced the visually indistinguishable LightGCN-family overlay in Figure 2 with a variant-minus-LightGCN concentration panel, and verified PNG/PDF/SVG generation is byte-deterministic. No target, training, evaluation, configuration, or selection path was reopened.

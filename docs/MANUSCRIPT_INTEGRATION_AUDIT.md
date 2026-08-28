@@ -1,6 +1,6 @@
 # MANUSCRIPT_INTEGRATION_AUDIT
 
-Audit date: 2026-08-28
+Audit date: 2026-08-29
 
 ## Status
 
@@ -52,9 +52,11 @@ Audit date: 2026-08-28
 5. **OPEN — journal formatting:** apply the current JOIN template, section and
    abstract limits, reference style, figure/table placement rules, and required
    declarations only after checking the official author guidelines.
-6. **OPEN — result visualization:** add a traceable relevance–risk/Pareto figure
-   and, if space permits, an exposure-distribution view from locked artifacts.
-   Do not rerun test evaluation or select a new operating point.
+6. **COMPLETE — result visualization:** the NDCG–DVR operating-point figure and
+   exposure-concentration figure are generated from locked Stage 4 summary and
+   result artifacts. Their source hashes and derived values are recorded in
+   `manuscript/generated/FIGURE_DATA.json`; no target, training, evaluation, or
+   reselection path is used.
 
 ## Reportable reproducibility limitation
 
@@ -66,6 +68,8 @@ Audit date: 2026-08-28
 ## Build contract
 
 - Edit the eight section sources under `manuscript/`.
+- Run `python manuscript/generate_figures.py` after changing a locked figure
+  source or plotting code. It must read only the two recorded Stage 4 outputs.
 - Run `powershell -ExecutionPolicy Bypass -File
   manuscript/build_full_manuscript.ps1` from the project root.
 - Treat `manuscript/FULL_MANUSCRIPT_DRAFT.md` as generated output.

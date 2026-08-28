@@ -28,6 +28,34 @@ among the learned models. Popularity produced the lowest risk values overall,
 but its substantially lower relevance shows that low overchallenge alone does
 not constitute a competitive personalized recommendation result.
 
+Figure 1 places the final method means on the NDCG@10–DVR@10 plane and enlarges
+the three matched LightGCN operating points. The plot makes both comparisons
+visible: the integrated and post-hoc variants move toward lower DVR than
+LightGCN, while post-hoc makes the larger relevance concession. Across all
+evaluated method means, Popularity and BPR-MF form the discrete nondominated
+set on this plane; the difficulty-controlled LightGCN variants should therefore
+not be described as globally Pareto-optimal final methods.
+
+![Final NDCG–DVR operating points](figures/figure1_accuracy_risk_tradeoff.png)
+
+**Figure 1. Final NDCG@10–DVR@10 operating points.** Points show means and
+sample-standard-deviation whiskers across five matched seeds; Popularity is
+deterministic. The dashed connection marks discrete nondominated method means,
+not an interpolation. Panel (b) enlarges the matched LightGCN family.
+
+Figure 2 reports the predeclared exposure distribution as a descriptive
+concentration view. It averages item-level exposure counts across matched seeds
+before sorting skills by decreasing exposure within each method. The figure was
+not used for model selection or for defining an additional test criterion.
+
+![Top-10 exposure concentration](figures/figure2_exposure_concentration.png)
+
+**Figure 2. Concentration of Top-10 recommendation exposure across skills.**
+Curves that rise more steeply allocate more recommendation exposure to a
+smaller share of the 264-skill catalog. The dotted diagonal represents uniform
+exposure. Panel (b) reports each difficulty-controlled variant minus LightGCN
+at the same catalog share; positive values denote greater concentration.
+
 ## RQ1: Effect of integrated difficulty regularization
 
 Compared with standard LightGCN, integrated asymmetric regularization reduced
