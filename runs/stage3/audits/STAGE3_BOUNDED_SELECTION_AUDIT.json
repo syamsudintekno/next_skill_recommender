@@ -1,0 +1,63 @@
+{
+  "audit_id": "STAGE3_BOUNDED_SELECTION_AUDIT",
+  "created_date": "2026-08-28",
+  "status": "PASS",
+  "scope": "Eight frozen-budget validation runs and deterministic selection output",
+  "manifest": "stages/stage3_proposed/configs/bounded_tuning_manifest.json",
+  "runs_audited": 8,
+  "manifest_coefficient_matches": 8,
+  "forbidden_file_accesses": [],
+  "test_accessed": false,
+  "checkpoint_integrity": {
+    "integrated_checkpoint_hashes_verified": 4,
+    "posthoc_source_checkpoint_hashes_verified": 4,
+    "posthoc_source": "DRLGCN_LAMBDA0_DEV_20260827"
+  },
+  "evaluation_integrity": {
+    "top10_exposures_per_run": 222410,
+    "integrated_best_epochs": [100, 100, 100, 100],
+    "integrated_recorded_best_matches_validation_argmax": true,
+    "pareto_points_integrated": 4,
+    "pareto_points_posthoc": 4
+  },
+  "selection_recomputed_independently": true,
+  "selected": {
+    "integrated": {
+      "run_id": "DRLGCN_BOUND_001",
+      "difficulty_weight": 0.03,
+      "relative_ndcg_loss": 0.006481771998536932,
+      "recall_at_10": 0.48545348262062143,
+      "ndcg_at_10": 0.28422373148346913,
+      "mrr_at_10": 0.22266553038170464,
+      "dvr_at_10": 0.18530641607841375,
+      "med_at_10": 0.016170118004083633,
+      "mean_squared_risk_at_10": 0.0022647534497082233
+    },
+    "posthoc": {
+      "run_id": "POSTHOC_BOUND_002",
+      "rerank_weight": 5.0,
+      "relative_ndcg_loss": 0.005919705812608069,
+      "recall_at_10": 0.4828904177346104,
+      "ndcg_at_10": 0.2843845262673019,
+      "mrr_at_10": 0.22373119009433587,
+      "dvr_at_10": 0.17883638325614856,
+      "med_at_10": 0.014879129827022552,
+      "mean_squared_risk_at_10": 0.0019893795251846313
+    }
+  },
+  "selected_posthoc_minus_selected_integrated": {
+    "recall_at_10": -0.002563064886011046,
+    "ndcg_at_10": 0.0001607947838327406,
+    "mrr_at_10": 0.0010656597126312284,
+    "dvr_at_10": -0.006470032822265187,
+    "med_at_10": -0.001290988177061081,
+    "mean_squared_risk_at_10": -0.000275373924523592
+  },
+  "interpretation": [
+    "The frozen rule selects lambda_d=0.03 and post-hoc gamma=5 exactly as recorded in STAGE3_BOUNDED_SELECTION.json.",
+    "At the selection seed, post-hoc gamma=5 has higher NDCG and MRR and lower DVR, MED, and squared risk than integrated lambda_d=0.03, but lower Recall.",
+    "This single-seed comparison is selection evidence, not a statistical or final-result claim.",
+    "All integrated runs reached the inherited epoch cap; the cap must not be extended."
+  ],
+  "next_required_step": "Five-seed validation for both selected variants before tau sensitivity or any test access"
+}

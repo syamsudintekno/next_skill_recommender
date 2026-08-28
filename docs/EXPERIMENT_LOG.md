@@ -98,4 +98,17 @@
 - Based on scale rather than target performance, the post-hoc bounded range is γ `{1, 5, 10, 20}`.
 - Matched four-run integrated range is λd `{0.03, 0.1, 0.3, 1.0}`; shared τ=0.1, T=0.2, and seed 20260827.
 - Status: frozen before execution. Result-driven expansion is prohibited.
+- Code snapshot before bounded execution: Git commit `7231af6` (`git rev-parse --short HEAD`, reported from project root).
 - Trace: `runs/stage3/audits/STAGE3_SCORE_RISK_SCALE_AUDIT.json` and `stages/stage3_proposed/configs/bounded_tuning_manifest.json`.
+
+## Stage 3 bounded coefficient selection — 2026-08-28
+
+- Status: completed, validation-only, seed 20260827; eight frozen configurations audited.
+- Integrated λd `{0.03, 0.1, 0.3, 1.0}` formed a monotonic NDCG–DVR trade-off; every point was non-dominated. All checkpoints selected epoch 100.
+- Post-hoc γ `{1, 5, 10, 20}` also formed a monotonic NDCG–DVR trade-off; every point was non-dominated.
+- Under the frozen 1% relative NDCG-loss guardrail, integrated selected λd=0.03 (`DRLGCN_BOUND_001`; loss 0.6482%) and post-hoc selected γ=5 (`POSTHOC_BOUND_002`; loss 0.5920%).
+- Selected integrated: Recall 0.485453, NDCG 0.284224, MRR 0.222666, DVR 0.185306, MED 0.016170, squared risk 0.002265.
+- Selected post-hoc: Recall 0.482890, NDCG 0.284385, MRR 0.223731, DVR 0.178836, MED 0.014879, squared risk 0.001989.
+- **INFERENCE — PROVISIONAL:** at this selection seed, post-hoc gives the stronger NDCG–risk point, whereas integrated retains higher Recall. Multi-seed validation is required before comparative claims.
+- No test or `final_*` artifact was accessed. Selection was independently recomputed and matched `STAGE3_BOUNDED_SELECTION.json`.
+- Trace: `runs/stage3/audits/STAGE3_BOUNDED_SELECTION_AUDIT.json`.

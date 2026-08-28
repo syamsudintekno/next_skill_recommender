@@ -39,3 +39,12 @@
 - **DECISION — REVISED/LOCKED:** the matched coefficient budget and selection rule are frozen in `stages/stage3_proposed/configs/bounded_tuning_manifest.json`; no configuration may be added after results are observed.
 - **DECISION — REVISED/LOCKED:** DVR@10 is violation exposure share; MED@10 is unconditional mean positive excess over all Top-10 exposures. These definitions supersede their previous OPEN status.
 - **FACT — VERIFIED:** target-free scale audit found unseen-score SD 2.525652 and positive-risk median/p90 0.018004/0.104013 at τ=0.1. This supports replacing the ineffective γ=0.1 probe with the frozen range 1–20 without using validation outcomes.
+
+## 2026-08-28 — Stage 3 bounded selection
+
+- **DECISION — COMPLETE:** the frozen bounded budget completed with all eight expected validation results and no forbidden/test artifact access.
+- **DECISION — LOCKED:** integrated selection is `DRLGCN_BOUND_001`, λd=0.03, under the primary 1% NDCG guardrail.
+- **DECISION — LOCKED:** post-hoc selection is `POSTHOC_BOUND_002`, γ=5, under the same guardrail.
+- **FACT — DIAGNOSTIC:** at seed 20260827, selected post-hoc has higher NDCG/MRR and lower DVR/MED/squared risk than selected integrated, while integrated has higher Recall. This is not yet a multi-seed conclusion.
+- **DECISION — REJECTED:** no bounded coefficient grid expansion and no epoch-cap extension are permitted after observing these results.
+- **DECISION — OPEN:** five-seed validation of both selected variants remains required before τ sensitivity and before any final/test access.

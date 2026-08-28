@@ -47,3 +47,15 @@ The λd=0 checkpoint is bit-identical to Stage-2 `LIGHTGCN_BOUND_004`.
 Hyperparameters and pedagogical metric definitions remain open; no test target
 has been accessed. Audit trace:
 `runs/stage3/audits/STAGE3_DEV_RUN_AUDIT.json`.
+
+## Stage 3 bounded selection (seed 20260827)
+
+| Selected variant | Coefficient | Recall@10 | NDCG@10 | MRR@10 | DVR@10 | MED@10 | Squared risk@10 | Relative NDCG loss |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Integrated | λd=0.03 | 0.485453 | 0.284224 | 0.222666 | 0.185306 | 0.016170 | 0.002265 | 0.6482% |
+| Post-hoc | γ=5 | 0.482890 | 0.284385 | 0.223731 | 0.178836 | 0.014879 | 0.001989 | 0.5920% |
+
+These rows record validation selection only. They are not multi-seed or final
+results. All eight bounded points and the deterministic selection are traced to
+`runs/stage3/STAGE3_BOUNDED_SELECTION.json` and
+`runs/stage3/audits/STAGE3_BOUNDED_SELECTION_AUDIT.json`.
