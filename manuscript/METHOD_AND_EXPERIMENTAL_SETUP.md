@@ -1,11 +1,5 @@
 # Method and Experimental Setup
 
-> **Drafting note (remove before submission):** the verified raw filename,
-> byte size, and SHA-256 are available, but the official download URL, access
-> date, and dataset citation are not present in the current workspace. These
-> fields must be recovered from primary Stage 1 evidence; they must not be
-> inferred from the filename.
-
 ## Problem formulation
 
 We formulate the task as Top-K recommendation of the next newly encountered
@@ -29,9 +23,22 @@ next first exposure to a skill.
 
 ## Temporal data construction
 
-The source was the ASSISTments data file `dataset_skill.csv` (3,009,494,391
-bytes; SHA-256
-`1d06aee9e649c5ba9db49052fe9a86e68d0c3ccb4709a7487289d7721f5464db`).
+We used the ASSISTments 2012--2013 School Data with Affect, distributed by the
+official ASSISTments data site and obtained through the Kaggle mirror record
+*ASSISTments Data Set 2012-2013* (version 4; records reverified on August 28,
+2026; ASSISTmentsData, n.d.; Wattiez, 2021). The mirror's sole version-4 file is
+`2012-2013-data-with-predictions-4-final.csv`; the analyzed local copy was named
+`dataset_skill.csv`. The public file metadata and local copy have the same exact
+size of 3,009,494,391 bytes.
+The local input is additionally fixed by SHA-256
+`1d06aee9e649c5ba9db49052fe9a86e68d0c3ccb4709a7487289d7721f5464db`.
+Because the public mirror does not expose a cryptographic checksum, the public
+record-to-local-copy match is supported by the variant description, sole-file
+metadata, exact byte size, compatible schema, and local row audit, whereas the SHA-256
+identifies the exact bytes used in this study. We cite Feng et al. (2009), as
+requested by the official data page for uses that do not analyze the affect
+columns.
+
 We retained events with valid learner, skill, event, and timestamp fields;
 numeric correctness in \([0,1]\); `original = 1`; and a problem type other than
 open response. A value of `correct = 1` was treated as success, while values

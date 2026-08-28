@@ -221,12 +221,6 @@ remain necessary before submission.
 
 # Method and Experimental Setup
 
-> **Drafting note (remove before submission):** the verified raw filename,
-> byte size, and SHA-256 are available, but the official download URL, access
-> date, and dataset citation are not present in the current workspace. These
-> fields must be recovered from primary Stage 1 evidence; they must not be
-> inferred from the filename.
-
 ## Problem formulation
 
 We formulate the task as Top-K recommendation of the next newly encountered
@@ -250,9 +244,22 @@ next first exposure to a skill.
 
 ## Temporal data construction
 
-The source was the ASSISTments data file `dataset_skill.csv` (3,009,494,391
-bytes; SHA-256
-`1d06aee9e649c5ba9db49052fe9a86e68d0c3ccb4709a7487289d7721f5464db`).
+We used the ASSISTments 2012--2013 School Data with Affect, distributed by the
+official ASSISTments data site and obtained through the Kaggle mirror record
+*ASSISTments Data Set 2012-2013* (version 4; records reverified on August 28,
+2026; ASSISTmentsData, n.d.; Wattiez, 2021). The mirror's sole version-4 file is
+`2012-2013-data-with-predictions-4-final.csv`; the analyzed local copy was named
+`dataset_skill.csv`. The public file metadata and local copy have the same exact
+size of 3,009,494,391 bytes.
+The local input is additionally fixed by SHA-256
+`1d06aee9e649c5ba9db49052fe9a86e68d0c3ccb4709a7487289d7721f5464db`.
+Because the public mirror does not expose a cryptographic checksum, the public
+record-to-local-copy match is supported by the variant description, sole-file
+metadata, exact byte size, compatible schema, and local row audit, whereas the SHA-256
+identifies the exact bytes used in this study. We cite Feng et al. (2009), as
+requested by the official data page for uses that do not analyze the affect
+columns.
+
 We retained events with valid learner, skill, event, and timestamp fields;
 numeric correctness in \([0,1]\); `original = 1`; and a problem type other than
 open response. A value of `correct = 1` was treated as success, while values
@@ -830,12 +837,15 @@ causal effects on achievement.
 ## Reproducibility limitation
 
 The current workspace contains verified raw-file identity information and a
-complete pre-test snapshot of all 12 canonical artifact hashes. However, the
-original complete Stage 1 handoff manifest and the official download URL/access
-date were not present in the received archive. The recorded hashes prevent
-subsequent artifact drift and all final files passed the pre-test gate, but this
-does not reconstruct the missing provenance document. The official dataset
-source, access date, and primary citation must be recovered before submission.
+complete pre-test snapshot of all 12 canonical artifact hashes. The public raw
+record, official ASSISTments landing page, mirror version, file metadata, and
+required ASSISTments citation were reverified after the experiments. The public
+mirror's sole version-4 file has the same byte size as the analyzed local copy,
+and the exact local bytes are fixed by SHA-256; however, the mirror does not
+publish a checksum for direct cryptographic comparison. Separately, the
+original complete Stage 1 handoff manifest remains unavailable. The recorded
+pre-test hashes prevent subsequent artifact drift and all final files passed the
+pre-test gate, but they do not reconstruct that missing original manifest.
 
 ## Practical implication
 
@@ -900,13 +910,36 @@ signals, test additional datasets and recommendation units, study scalable
 approximations for larger catalogs, and evaluate operating-point choices with
 educational stakeholders before prospective deployment.
 
+# Data and Code Availability
+
+The ASSISTments 2012--2013 data are publicly described and distributed through
+the official ASSISTments data page, with a version-4 mirror record on Kaggle.
+The raw and row-level processed data are not redistributed in this repository.
+The exact local input used in the study is identified in the Method by filename,
+byte size, and SHA-256 so that an independently obtained copy can be checked
+against the analyzed bytes.
+
+The implementation, frozen configurations, audit records, aggregate result
+artifacts, manuscript sources, and deterministic figure-generation code are
+available at
+https://github.com/syamsudintekno/next_skill_recommender. An immutable archived
+release identifier will be added before submission; until then, manuscript
+claims are traceable to the Git commit reported with the submitted version.
+
 # References
 
 > **Drafting note:** entries below cover only works currently cited in the
 > manuscript and use verified publication metadata. They must be converted to
-> the final JOIN reference style. The official ASSISTments dataset citation is
-> not included because its exact source record and access date are absent from
-> the workspace.
+> the final JOIN reference style.
+
+ASSISTmentsData. (n.d.). *2012-13 School Data with Affect*. Retrieved August
+28, 2026, from
+https://sites.google.com/site/assistmentsdata/datasets/2012-13-school-data-with-affect
+
+Feng, M., Heffernan, N., and Koedinger, K. (2009). Addressing the assessment
+challenge with an online system that tutors as it assesses. *User Modeling and
+User-Adapted Interaction, 19*(3), 243--266.
+https://doi.org/10.1007/s11257-009-9063-7
 
 Gong, J., Wang, S., Wang, J., Feng, W., Peng, H., Tang, J., and Yu, P. S.
 (2020). Attentional Graph Convolutional Networks for Knowledge Concept
@@ -930,6 +963,10 @@ Bayesian Personalized Ranking from Implicit Feedback. In *Proceedings of the
 Twenty-Fifth Conference on Uncertainty in Artificial Intelligence* (pp.
 452–461). AUAI Press.
 https://auai.org/uai2009/papers/UAI2009_0139_48141db02b9f0b02bc7158819ebfa2c7.pdf
+
+Wattiez, N. (2021). *ASSISTments Data Set 2012-2013* (Version 4) [Data set].
+Kaggle. Retrieved August 28, 2026, from
+https://www.kaggle.com/datasets/nicolaswattiez/skillbuilder-data-2009-2010
 
 Yu, J., Xia, X., Chen, T., Cui, L., Hung, N. Q. V., and Yin, H. (2023).
 XSimGCL: Towards Extremely Simple Graph Contrastive Learning for

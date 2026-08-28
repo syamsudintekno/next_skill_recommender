@@ -1,5 +1,14 @@
 # DATA_AUDIT
 
+## 2026-08-28 — Raw dataset provenance recovery
+
+- **FACT — VERIFIED:** the analyzed local file is `dataset_skill.csv`, 3,009,494,391 bytes, with SHA-256 `1d06aee9e649c5ba9db49052fe9a86e68d0c3ccb4709a7487289d7721f5464db`; the Stage 1 audit streamed 6,123,270 rows.
+- **FACT — VERIFIED:** the Kaggle record *ASSISTments Data Set 2012-2013* (dataset ID 1108473, version 4) describes the ASSISTments 2012--2013 School Data with Affect and contains one file, `2012-2013-data-with-predictions-4-final.csv`, whose recorded size is exactly 3,009,494,391 bytes.
+- **FACT — VERIFIED:** the Kaggle record identifies the official ASSISTments data site as its source. The official `2012-13 School Data with Affect` page documents the raw fields, open-response behavior, correctness semantics, and the requested citation for analyses that do not use affect columns.
+- **INFERENCE — STRONGLY SUPPORTED:** `dataset_skill.csv` is a locally renamed copy of the sole Kaggle version-4 file. This is supported by the exact byte-size match, dataset variant, schema, and row-level Stage 1 audit. It is not claimed as a cryptographic match because the public Kaggle metadata does not expose a reference checksum.
+- **DECISION — LOCKED:** cite the official ASSISTments landing page and Feng, Heffernan, and Koedinger (2009; DOI `10.1007/s11257-009-9063-7`) as the primary provenance/citation chain; identify Kaggle version 4 as the acquisition mirror. Public records were reverified on 2026-08-28.
+- **SEPARATE LIMITATION — OPEN:** recovery of raw provenance does not repair the missing original complete 12-file Stage 1 artifact manifest described below.
+
 ## 2026-08-27 — Stage 2 canonical handoff
 
 - **FACT — VERIFIED:** supplied ZIP contains exactly the 12 expected canonical Parquet filenames.

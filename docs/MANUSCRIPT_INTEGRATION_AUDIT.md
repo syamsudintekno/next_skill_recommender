@@ -5,9 +5,10 @@ Audit date: 2026-08-29
 ## Status
 
 - **COMPLETE — DRAFT ASSEMBLY:** Abstract, Introduction, Related Work, Method
-  and Experimental Setup, Results, Discussion and Limitations, Conclusion, and
-  References have source files and a deterministic assembly order.
-- **NOT SUBMISSION-READY:** unresolved provenance, literature-coverage, author,
+  and Experimental Setup, Results, Discussion and Limitations, Conclusion, Data
+  and Code Availability, and References have source files and a deterministic
+  assembly order.
+- **NOT SUBMISSION-READY:** unresolved literature-coverage, author/archive,
   and journal-format items remain below.
 
 ## Cross-section checks
@@ -36,9 +37,13 @@ Audit date: 2026-08-29
 
 ## Submission blockers
 
-1. **BLOCKED — dataset provenance:** recover the official ASSISTments download
-   URL, exact public dataset record/variant, access date, and primary dataset
-   citation. Remove the drafting note in the Method only after verification.
+1. **COMPLETE — dataset provenance:** the official ASSISTments landing page,
+   Kaggle acquisition mirror (dataset ID 1108473, version 4), sole public
+   filename and byte size, local SHA-256, 2026-08-28 reverification date, and
+   requested Feng et al. citation are recorded in the Method, References, and
+   `docs/DATA_AUDIT.md`. The absence of a public mirror checksum is stated; the
+   missing original 12-file Stage 1 artifact manifest remains a separate
+   reportable limitation.
 2. **OPEN — literature coverage:** reconcile the targeted primary-source
    comparison with the author's SLR and perform the broader database search
    described in `docs/NOVELTY_MATRIX.md`. No priority claim is allowed in the
@@ -46,9 +51,10 @@ Audit date: 2026-08-29
 3. **OPEN — author metadata:** supply the final author order, affiliations,
    corresponding-author details, acknowledgments/funding, conflict-of-interest
    statement, and any required ethics statement.
-4. **OPEN — availability statements:** decide the repository/archive URL and
-   write data-availability and code-availability statements that accurately
-   reflect redistribution constraints.
+4. **PARTIAL — availability statements:** `manuscript/AVAILABILITY.md` records
+   the public dataset locations, non-redistribution of row-level data, exact
+   local raw identifier, and public code repository. An immutable archived
+   release identifier remains required before submission.
 5. **OPEN — journal formatting:** apply the current JOIN template, section and
    abstract limits, reference style, figure/table placement rules, and required
    declarations only after checking the official author guidelines.
@@ -62,12 +68,13 @@ Audit date: 2026-08-29
 
 - The original complete 12-file Stage 1 handoff manifest is unavailable. The
   pre-test snapshot hashes control subsequent artifact drift but cannot prove
-  equality to that missing original handoff. This is already disclosed in the
-  Method and Discussion and must not be silently marked as repaired.
+  equality to that missing original handoff. Raw dataset provenance recovery
+  does not repair this artifact-handoff limitation. This is already disclosed
+  in the Method and Discussion and must not be silently marked as repaired.
 
 ## Build contract
 
-- Edit the eight section sources under `manuscript/`.
+- Edit the nine section sources under `manuscript/`.
 - Run `python manuscript/generate_figures.py` after changing a locked figure
   source or plotting code. It must read only the two recorded Stage 4 outputs.
 - Run `powershell -ExecutionPolicy Bypass -File

@@ -179,12 +179,15 @@ causal effects on achievement.
 ## Reproducibility limitation
 
 The current workspace contains verified raw-file identity information and a
-complete pre-test snapshot of all 12 canonical artifact hashes. However, the
-original complete Stage 1 handoff manifest and the official download URL/access
-date were not present in the received archive. The recorded hashes prevent
-subsequent artifact drift and all final files passed the pre-test gate, but this
-does not reconstruct the missing provenance document. The official dataset
-source, access date, and primary citation must be recovered before submission.
+complete pre-test snapshot of all 12 canonical artifact hashes. The public raw
+record, official ASSISTments landing page, mirror version, file metadata, and
+required ASSISTments citation were reverified after the experiments. The public
+mirror's sole version-4 file has the same byte size as the analyzed local copy,
+and the exact local bytes are fixed by SHA-256; however, the mirror does not
+publish a checksum for direct cryptographic comparison. Separately, the
+original complete Stage 1 handoff manifest remains unavailable. The recorded
+pre-test hashes prevent subsequent artifact drift and all final files passed the
+pre-test gate, but they do not reconstruct that missing original manifest.
 
 ## Practical implication
 

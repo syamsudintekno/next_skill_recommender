@@ -1,5 +1,13 @@
 # MANUSCRIPT_CHANGELOG
 
+## 2026-08-28 — Dataset provenance and availability
+
+- Recovered and verified the raw provenance chain: official ASSISTments `2012-13 School Data with Affect` landing page, Kaggle dataset ID 1108473 version 4, sole mirror filename and byte size, local filename and SHA-256, access/reverification date, and the requested Feng et al. (2009) citation.
+- Removed the obsolete Method provenance drafting note and added a bounded record-to-local-copy identity statement that does not overclaim cryptographic equality.
+- Added official dataset, ASSISTments system, and Kaggle mirror references.
+- Added `manuscript/AVAILABILITY.md` and included it in deterministic manuscript assembly. Row-level data are not redistributed; the public code repository is identified, while an immutable archive identifier remains open.
+- Revised the reproducibility limitation to keep the missing original 12-file Stage 1 artifact manifest explicitly separate and unresolved. No data processing, configuration, model, evaluation, result, or figure was changed.
+
 ## 2026-08-27
 
 - No manuscript text or numerical claim changed.

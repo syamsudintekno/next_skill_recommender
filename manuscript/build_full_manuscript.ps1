@@ -10,6 +10,7 @@ $sectionFiles = @(
     "RESULTS.md",
     "DISCUSSION_AND_LIMITATIONS.md",
     "CONCLUSION.md",
+    "AVAILABILITY.md",
     "REFERENCES.md"
 )
 

@@ -1,5 +1,12 @@
 # DECISIONS
 
+## 2026-08-28 — Raw dataset provenance recovery
+
+- **FACT — VERIFIED:** Kaggle dataset ID 1108473, version 4, is titled *ASSISTments Data Set 2012-2013* and its sole file `2012-2013-data-with-predictions-4-final.csv` has the same 3,009,494,391-byte size as the analyzed local `dataset_skill.csv`.
+- **DECISION — LOCKED:** the official ASSISTments `2012-13 School Data with Affect` page is the primary dataset landing page; Kaggle version 4 is reported as the acquisition mirror; Feng et al. (2009), DOI `10.1007/s11257-009-9063-7`, is cited as requested for analysis not using affect columns.
+- **CLAIM GUARD — LOCKED:** describe the local file as corresponding to the mirror record, supported by exact size, variant, schema, and audit evidence. Do not claim a cryptographic match because the mirror exposes no reference checksum.
+- **LIMITATION — UNCHANGED:** the missing original complete 12-file Stage 1 artifact manifest remains reportable and is not repaired by raw-source verification.
+
 ## 2026-08-27
 
 - **DECISION — LOCKED:** common development evaluator uses deterministic full ranking and seen-item masking.
