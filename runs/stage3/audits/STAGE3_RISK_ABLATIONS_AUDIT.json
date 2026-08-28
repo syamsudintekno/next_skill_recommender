@@ -1,0 +1,53 @@
+{
+  "audit_id": "STAGE3_RISK_ABLATIONS_AUDIT",
+  "created_date": "2026-08-28",
+  "status": "PASS",
+  "scope": "Two OFAT integrated risk-form ablations against the frozen asymmetric-squared reference, five matched validation seeds",
+  "new_runs_audited": 10,
+  "reused_reference_runs": 5,
+  "manifest_compliance": true,
+  "summary_recomputed": true,
+  "maximum_mean_or_sample_sd_recomputation_delta": 0.0,
+  "checkpoint_hashes_verified": 10,
+  "forbidden_file_accesses": [],
+  "test_accessed": false,
+  "validation_means": {
+    "asymmetric_squared": {"recall": 0.48485993075228206, "ndcg": 0.28437159780788146, "mrr": 0.2231116471349845, "dvr": 0.18358796816689898, "med": 0.016090674325823784, "squared_risk": 0.002256528800353408},
+    "asymmetric_linear": {"recall": 0.4849318764332928, "ndcg": 0.283662945705745, "mrr": 0.2221432818222242, "dvr": 0.18241985522233714, "med": 0.015956446528434753, "squared_risk": 0.002238252479583025},
+    "symmetric_squared": {"recall": 0.4849318764332929, "ndcg": 0.28472065532001045, "mrr": 0.2235496128994038, "dvr": 0.18380918124185064, "med": 0.016121266409754753, "squared_risk": 0.0022614212706685067}
+  },
+  "paired_findings": {
+    "asymmetric_linear_minus_asymmetric_squared": {
+      "recall_mean_difference": 0.0000719456810108432,
+      "recall_ci95": [-0.0005882040032246631, 0.0007320953652463495],
+      "ndcg_mean_difference": -0.0007086521021364533,
+      "ndcg_ci95": [-0.0011972959223613645, -0.00022000828191154212],
+      "mrr_mean_difference": -0.0009683653127602942,
+      "mrr_ci95": [-0.0015426147268531424, -0.000394115898667446],
+      "dvr_mean_difference": -0.00116811294456185,
+      "dvr_ci95": [-0.0013380622368584683, -0.0009981636522652317],
+      "squared_risk_mean_difference": -0.00001827632077038288,
+      "squared_risk_ci95": [-0.00002199247315521796, -0.0000145601683855478]
+    },
+    "symmetric_squared_minus_asymmetric_squared": {
+      "recall_mean_difference": 0.0000719456810108432,
+      "recall_ci95": [-0.00011153938054540093, 0.0002554307425670873],
+      "ndcg_mean_difference": 0.00034905751212904734,
+      "ndcg_ci95": [0.00019271485793242175, 0.0005054001663256729],
+      "mrr_mean_difference": 0.0004379657644192958,
+      "mrr_ci95": [0.00022700790290225553, 0.000648923625936336],
+      "dvr_mean_difference": 0.00022121307495165943,
+      "dvr_ci95": [0.00013459912910913243, 0.00030782702079418646],
+      "squared_risk_mean_difference": 0.0000048924703150987625,
+      "squared_risk_ci95": [0.0000034687201187330933, 0.000006316220511464432]
+    }
+  },
+  "interpretation": [
+    "Asymmetric-linear reduces overchallenge metrics but lowers NDCG and MRR; Recall is not clearly separated.",
+    "Symmetric-squared slightly improves NDCG and MRR but increases overchallenge metrics; Recall is not clearly separated.",
+    "The ablations support a relevance-risk trade-off rather than universal dominance.",
+    "Asymmetric-squared remains frozen because reselection is prohibited and its one-sided form matches the intended overchallenge construct."
+  ],
+  "stage_status": "STAGE3_DEVELOPMENT_COMPLETE",
+  "next_required_step": "Freeze the final experiment and one-time test protocol before any test-target access"
+}

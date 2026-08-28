@@ -63,3 +63,56 @@ python stages/stage3_proposed/select_bounded.py
 
 This writes `runs/stage3/STAGE3_BOUNDED_SELECTION.json`; please send that file
 with the eight result files.
+
+## Frozen five-seed validation
+
+The selected coefficients are λd=0.03 and post-hoc γ=5. Seed 20260827 reuses
+the accepted bounded-selection results. Run the four remaining integrated
+trainings and four post-hoc evaluations with:
+
+```powershell
+python stages/stage3_proposed/run_multiseed_validation.py --family all
+```
+
+The integrated family contains the multi-epoch work. Post-hoc reuses the frozen
+selected LightGCN checkpoint for each matched seed. Once all runs complete:
+
+```powershell
+python stages/stage3_proposed/summarize_multiseed.py
+```
+
+Send `runs/stage3/STAGE3_MULTI_SEED_VALIDATION.json` plus the eight new
+`DRLGCN_MS_*` and `POSTHOC_MS_*` result files. Coefficients cannot be revised
+from these results, and test targets remain closed.
+
+## Frozen tau sensitivity
+
+Sensitivity uses τ `{0, 0.05, 0.1, 0.2}` on all five seeds at the already
+selected λd=0.03 and γ=5. Existing τ=0.1 results are reused. Every new result
+reports native-τ risk metrics and fixed-anchor τ_eval=0.1 metrics.
+
+```powershell
+python stages/stage3_proposed/run_tau_sensitivity.py --family all
+python stages/stage3_proposed/summarize_tau_sensitivity.py
+```
+
+The first command runs 15 integrated trainings and 15 post-hoc evaluations.
+Send `runs/stage3/STAGE3_TAU_SENSITIVITY.json` and the new
+`*_TAU_{000,005,020}_MS_*/result.json` files. This is analysis-only and cannot
+select a new τ or revise the selected coefficients.
+
+## Frozen risk-form ablations
+
+The OFAT ablations compare the frozen asymmetric-squared objective against
+asymmetric-linear and symmetric-squared forms on five seeds. Target-free scale
+matching equalizes mean unseen-candidate fixed risk before training.
+
+```powershell
+python stages/stage3_proposed/run_risk_ablations.py --variant all
+python stages/stage3_proposed/summarize_risk_ablations.py
+```
+
+This creates ten new integrated trainings. Send
+`runs/stage3/STAGE3_RISK_ABLATIONS.json` and the ten new
+`DRLGCN_ABL_{LINEAR,SYMMETRIC}_MS_*/result.json` files. No factorial expansion
+or coefficient revision is allowed.

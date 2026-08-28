@@ -1,0 +1,38 @@
+{
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "frozen_date": "2026-08-28",
+  "purpose": "One-factor-at-a-time risk-form ablations for the integrated model",
+  "seeds": [20260827, 20260828, 20260829, 20260830, 20260831],
+  "shared": {"tolerance": 0.1, "temperature": 0.2, "difficulty_weight": 0.03, "test_access": false},
+  "reference": {
+    "risk_form": "asymmetric_squared",
+    "risk_scale": 1.0,
+    "runs": {"20260827": "DRLGCN_BOUND_001", "20260828": "DRLGCN_MS_20260828", "20260829": "DRLGCN_MS_20260829", "20260830": "DRLGCN_MS_20260830", "20260831": "DRLGCN_MS_20260831"}
+  },
+  "ablations": {
+    "asymmetric_linear": {
+      "definition": "max(0, d_i - a_u - tau)",
+      "unscaled_mean_unseen_risk": 0.05411640927195549,
+      "risk_scale": 0.2356989647315097,
+      "run_pattern": "DRLGCN_ABL_LINEAR_MS_<seed>"
+    },
+    "symmetric_squared": {
+      "definition": "max(0, abs(d_i - a_u) - tau)^2",
+      "unscaled_mean_unseen_risk": 0.014354179613292217,
+      "risk_scale": 0.8886040152775477,
+      "run_pattern": "DRLGCN_ABL_SYMMETRIC_MS_<seed>"
+    }
+  },
+  "scale_reference": {
+    "definition": "asymmetric squared",
+    "unscaled_mean_unseen_risk": 0.012755181640386581,
+    "population": "all development learners and their unseen development-catalog candidates",
+    "target_outcomes_used": false
+  },
+  "reporting": {
+    "design": "OFAT against the frozen asymmetric-squared reference; no symmetric-linear factorial expansion",
+    "statistics": "mean and sample SD; paired ablation-minus-reference mean difference and two-sided 95% paired-t CI",
+    "metrics": ["Recall@10", "NDCG@10", "MRR@10", "DVR@10", "MED@10", "mean squared risk@10", "runtime"],
+    "selection_prohibition": "ablation results cannot revise selected lambda_d, tau, temperature, or post-hoc gamma"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "frozen_date": "2026-08-28",
+  "purpose": "Five-seed tau sensitivity at frozen selected coefficients",
+  "seeds": [20260827, 20260828, 20260829, 20260830, 20260831],
+  "training_tolerances": [0.0, 0.05, 0.1, 0.2],
+  "fixed_evaluation_tolerance": 0.1,
+  "temperature": 0.2,
+  "integrated_difficulty_weight": 0.03,
+  "posthoc_rerank_weight": 5.0,
+  "reuse_tau_0_1": {
+    "integrated": {"20260827": "DRLGCN_BOUND_001", "20260828": "DRLGCN_MS_20260828", "20260829": "DRLGCN_MS_20260829", "20260830": "DRLGCN_MS_20260830", "20260831": "DRLGCN_MS_20260831"},
+    "posthoc": {"20260827": "POSTHOC_BOUND_002", "20260828": "POSTHOC_MS_20260828", "20260829": "POSTHOC_MS_20260829", "20260830": "POSTHOC_MS_20260830", "20260831": "POSTHOC_MS_20260831"}
+  },
+  "new_run_id_patterns": {
+    "integrated": "DRLGCN_TAU_{000|005|020}_MS_<seed>",
+    "posthoc": "POSTHOC_TAU_{000|005|020}_MS_<seed>"
+  },
+  "reporting": {
+    "native_threshold": "risk metrics computed using each run's own tau",
+    "fixed_anchor": "risk metrics computed on the same recommendations using tau_eval=0.1",
+    "reason": "separates recommendation changes from the mechanical effect of redefining a violation",
+    "statistics": "mean and sample SD across five seeds; paired post-hoc-minus-integrated mean difference and two-sided 95% paired-t CI",
+    "selection_prohibition": "tau sensitivity is analysis-only and cannot revise lambda_d, gamma, or select a preferred tau"
+  },
+  "test_access": false
+}

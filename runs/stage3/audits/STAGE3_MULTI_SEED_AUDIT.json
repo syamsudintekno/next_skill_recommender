@@ -1,0 +1,51 @@
+{
+  "audit_id": "STAGE3_MULTI_SEED_AUDIT",
+  "created_date": "2026-08-28",
+  "status": "PASS",
+  "scope": "Five matched validation seeds for bounded-selected integrated and post-hoc variants",
+  "seeds": [20260827, 20260828, 20260829, 20260830, 20260831],
+  "runs_audited": 10,
+  "new_result_files_audited": 8,
+  "posthoc_bounded_files_received": 4,
+  "manifest_compliance": true,
+  "summary_recomputed": true,
+  "integrated_checkpoint_hashes_verified": 5,
+  "posthoc_source_checkpoint_hashes_verified": 5,
+  "forbidden_file_accesses": [],
+  "test_accessed": false,
+  "integrated_best_epochs": [100, 100, 100, 100, 100],
+  "summaries": {
+    "integrated_lambda_0_03": {
+      "recall_at_10": {"mean": 0.48485993075228206, "sd": 0.0029741227101442932},
+      "ndcg_at_10": {"mean": 0.28437159780788146, "sd": 0.0015715121783332051},
+      "mrr_at_10": {"mean": 0.2231116471349845, "sd": 0.0014315633263415567},
+      "dvr_at_10": {"mean": 0.18358796816689898, "sd": 0.0016704048255841084},
+      "med_at_10": {"mean": 0.016090674325823784, "sd": 0.00019261824592678046},
+      "mean_squared_risk_at_10": {"mean": 0.002256528800353408, "sd": 0.0000292173421436833}
+    },
+    "posthoc_gamma_5": {
+      "recall_at_10": {"mean": 0.4827645127928414, "sd": 0.0031994537882389217},
+      "ndcg_at_10": {"mean": 0.28450692282758994, "sd": 0.0016753320561191931},
+      "mrr_at_10": {"mean": 0.22399747119496208, "sd": 0.0015981024056989437},
+      "dvr_at_10": {"mean": 0.1775891371790837, "sd": 0.0014011910147619688},
+      "med_at_10": {"mean": 0.014850941486656666, "sd": 0.00018160117330961022},
+      "mean_squared_risk_at_10": {"mean": 0.001984887081198394, "sd": 0.000029539235510447816}
+    }
+  },
+  "paired_posthoc_minus_integrated": {
+    "recall_at_10": {"mean_difference": -0.002095417959440615, "ci95": [-0.003015049231564684, -0.001175786687316546]},
+    "ndcg_at_10": {"mean_difference": 0.00013532501970848766, "ci95": [-0.0004404400292042511, 0.0007110900686212265]},
+    "mrr_at_10": {"mean_difference": 0.000885824059977569, "ci95": [0.00023482311471977046, 0.0015368250052353676]},
+    "dvr_at_10": {"mean_difference": -0.005998830987815296, "ci95": [-0.006539328526802315, -0.005458333448828277]},
+    "med_at_10": {"mean_difference": -0.001239732839167118, "ci95": [-0.0013046109344678602, -0.001174854743866376]},
+    "mean_squared_risk_at_10": {"mean_difference": -0.00027164171915501357, "ci95": [-0.0002847497755755729, -0.00025853366273445426]}
+  },
+  "interpretation": [
+    "Post-hoc gamma=5 has lower DVR, MED, and squared risk than integrated lambda_d=0.03 on every matched validation seed; all paired 95% intervals exclude zero.",
+    "Integrated has higher Recall on every matched seed; the paired 95% interval excludes zero.",
+    "The NDCG difference is small and its paired 95% interval includes zero.",
+    "Post-hoc has higher MRR on every seed and its paired 95% interval excludes zero.",
+    "These are validation-only findings and cannot revise coefficients or support final/test claims."
+  ],
+  "next_required_step": "Frozen tau sensitivity analysis before complete Stage-3 design freeze and any test access"
+}

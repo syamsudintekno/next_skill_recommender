@@ -8,3 +8,9 @@
 - Stage 3 loader/objective audit and runner infrastructure were added; no manuscript result or claim was changed.
 - Three Stage 3 single-seed validation probes were logged as development evidence only; no manuscript table, result claim, or test result was added.
 - Frozen Stage 3 bounded selection was completed and logged as validation-only evidence; no manuscript result claim or test result was added.
+- Five-seed Stage 3 validation protocol and reporting contract were frozen; no new numerical or manuscript claim was added.
+- Five-seed selected-variant validation results were logged as development evidence; no test result or final manuscript claim was added.
+- Five-seed τ-sensitivity protocol, including fixed-anchor risk reporting, was frozen; no sensitivity result or manuscript claim was added.
+- Audited τ-sensitivity results were logged as validation-only evidence; no test result or final manuscript claim was added.
+- Risk-form ablation protocol was frozen with target-free scale matching; no ablation result or manuscript claim was added.
+- Audited five-seed risk-form ablation results were logged as validation-only evidence; no test result or final manuscript claim was added.

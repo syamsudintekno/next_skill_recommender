@@ -1,0 +1,16 @@
+{
+  "run_id": "POSTHOC_TAU_020_MS_20260827",
+  "seed": 20260827,
+  "mode": "posthoc",
+  "embedding_dim": 64,
+  "layers": 1,
+  "tolerance": 0.2,
+  "temperature": 0.2,
+  "difficulty_weight": 0.0,
+  "rerank_weight": 5.0,
+  "base_checkpoint": "runs/stage2/lightgcn/LIGHTGCN_BOUND_004/checkpoint.pt",
+  "expected_checkpoint_sha256": "18c492b58279b9e6a08990bfba3fde1e95ef1be232baaeb284a6729fea2d4a32",
+  "evaluation_tolerances": [
+    0.1
+  ]
+}

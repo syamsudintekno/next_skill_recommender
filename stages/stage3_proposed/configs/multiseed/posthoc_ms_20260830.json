@@ -1,0 +1,1 @@
+{"run_id":"POSTHOC_MS_20260830","seed":20260830,"mode":"posthoc","embedding_dim":64,"layers":1,"tolerance":0.1,"temperature":0.2,"difficulty_weight":0.0,"rerank_weight":5.0,"base_checkpoint":"runs/stage2/lightgcn/LIGHTGCN_MS_20260830/checkpoint.pt","expected_checkpoint_sha256":"35cb924130fecb9948e1f27dabd28b351b4580b330006232bace61f57b8c0389"}

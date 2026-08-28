@@ -48,3 +48,29 @@
 - **FACT — DIAGNOSTIC:** at seed 20260827, selected post-hoc has higher NDCG/MRR and lower DVR/MED/squared risk than selected integrated, while integrated has higher Recall. This is not yet a multi-seed conclusion.
 - **DECISION — REJECTED:** no bounded coefficient grid expansion and no epoch-cap extension are permitted after observing these results.
 - **DECISION — OPEN:** five-seed validation of both selected variants remains required before τ sensitivity and before any final/test access.
+- **DECISION — REVISED/LOCKED:** five-seed validation manifest is frozen at `stages/stage3_proposed/configs/multiseed_validation_manifest.json`; seed 20260827 is reused and four new seeds per selected variant remain to execute.
+- **DECISION — LOCKED:** paired comparison direction is post-hoc minus integrated. Mean±sample SD and two-sided paired-t 95% CI are the predeclared summaries; these results cannot revise selected coefficients.
+
+## 2026-08-28 — Stage 3 five-seed validation
+
+- **DECISION — COMPLETE:** selected integrated λd=0.03 and post-hoc γ=5 completed validation on all five predeclared matched seeds.
+- **FACT — VALIDATION:** post-hoc has lower DVR, MED, and squared risk on all five seeds; the paired 95% CIs for post-hoc-minus-integrated exclude zero.
+- **FACT — VALIDATION:** integrated has higher Recall on all five seeds; its paired difference interval excludes zero.
+- **FACT — VALIDATION:** the NDCG difference is small and its paired interval includes zero. Post-hoc MRR is higher on all five seeds and its paired interval excludes zero.
+- **DECISION — LOCKED:** these findings do not reopen λd or γ selection and are not final/test results.
+- **DECISION — OPEN:** frozen τ sensitivity remains required before complete Stage 3 design freeze and any test access.
+- **DECISION — REVISED/LOCKED:** τ sensitivity is frozen in `tau_sensitivity_manifest.json` for four τ values and five seeds, with native and fixed-anchor τ_eval=0.1 reporting. It is analysis-only and cannot revise selected settings.
+
+## 2026-08-28 — Stage 3 τ sensitivity
+
+- **DECISION — COMPLETE:** τ sensitivity completed for τ `{0, 0.05, 0.1, 0.2}`, both selected variants, and all five seeds; 30 new runs and 10 reused τ=0.1 runs passed audit.
+- **FACT — VALIDATION:** native DVR/MED/risk decrease sharply with larger τ, but fixed-anchor τ_eval=0.1 results show anchor risk increases with τ. The native trend is therefore partly definitional rather than solely a recommendation improvement.
+- **FACT — VALIDATION:** smaller τ produces more conservative ranked lists under the common anchor, with a relevance cost that is strongest for post-hoc Recall and integrated NDCG/MRR.
+- **DECISION — LOCKED:** sensitivity does not revise τ=0.1, λd=0.03, or γ=5.
+- **DECISION — OPEN:** asymmetric-vs-symmetric and linear-vs-squared ablations remain required before Stage 3 design freeze can close.
+- **DECISION — REVISED/LOCKED:** risk-form ablations are frozen as two OFAT five-seed comparisons with target-free mean-risk scale matching; no symmetric-linear factorial expansion is permitted.
+- **DECISION — COMPLETE:** both frozen risk-form ablations completed across all five matched validation seeds and passed configuration, aggregation, checkpoint-hash, and leakage audit.
+- **FACT — VALIDATION:** asymmetric-linear reduces DVR, MED, and squared risk but lowers NDCG and MRR relative to asymmetric-squared; Recall is not clearly separated.
+- **FACT — VALIDATION:** symmetric-squared slightly raises NDCG and MRR but also raises DVR, MED, and squared risk relative to asymmetric-squared; Recall is not clearly separated.
+- **DECISION — LOCKED:** asymmetric-squared remains selected. Ablation results cannot trigger reselection, and the one-sided form matches the stated overchallenge construct.
+- **STAGE STATUS — COMPLETE:** Stage 3 development, bounded selection, five-seed validation, τ sensitivity, and risk-form ablations are complete. The next gate is a frozen final-experiment and one-time test protocol; test targets remain unopened.

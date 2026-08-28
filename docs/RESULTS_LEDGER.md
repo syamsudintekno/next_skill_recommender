@@ -59,3 +59,45 @@ These rows record validation selection only. They are not multi-seed or final
 results. All eight bounded points and the deterministic selection are traced to
 `runs/stage3/STAGE3_BOUNDED_SELECTION.json` and
 `runs/stage3/audits/STAGE3_BOUNDED_SELECTION_AUDIT.json`.
+
+## Stage 3 selected variants — validation summary (5 seeds)
+
+| Variant | Recall@10 mean±SD | NDCG@10 mean±SD | MRR@10 mean±SD | DVR@10 mean±SD | MED@10 mean±SD | Squared risk@10 mean±SD |
+|---|---:|---:|---:|---:|---:|---:|
+| Integrated λd=0.03 | 0.484860±0.002974 | 0.284372±0.001572 | 0.223112±0.001432 | 0.183588±0.001670 | 0.016091±0.000193 | 0.002257±0.000029 |
+| Post-hoc γ=5 | 0.482765±0.003199 | 0.284507±0.001675 | 0.223997±0.001598 | 0.177589±0.001401 | 0.014851±0.000182 | 0.001985±0.000030 |
+
+Paired differences use post-hoc minus integrated. The 95% CI includes zero for
+NDCG only; it excludes zero for Recall, MRR, DVR, MED, and squared risk. These
+are validation-only results, traced to `STAGE3_MULTI_SEED_VALIDATION.json` and
+`runs/stage3/audits/STAGE3_MULTI_SEED_AUDIT.json`.
+
+## Stage 3 τ sensitivity — fixed-anchor τ_eval=0.1 (5-seed means)
+
+| Training/reranking τ | Variant | Recall@10 | NDCG@10 | MRR@10 | Anchor DVR@10 | Anchor MED@10 | Anchor squared risk@10 |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 0.00 | Integrated | 0.485651 | 0.282073 | 0.219823 | 0.180369 | 0.015733 | 0.002202 |
+| 0.00 | Post-hoc | 0.479329 | 0.281769 | 0.221477 | 0.162182 | 0.012917 | 0.001674 |
+| 0.05 | Integrated | 0.484932 | 0.283253 | 0.221599 | 0.182178 | 0.015909 | 0.002228 |
+| 0.05 | Post-hoc | 0.481209 | 0.283346 | 0.222953 | 0.170876 | 0.013953 | 0.001837 |
+| 0.10 | Integrated | 0.484860 | 0.284372 | 0.223112 | 0.183588 | 0.016091 | 0.002257 |
+| 0.10 | Post-hoc | 0.482765 | 0.284507 | 0.223997 | 0.177589 | 0.014851 | 0.001985 |
+| 0.20 | Integrated | 0.484743 | 0.285926 | 0.225227 | 0.185206 | 0.016337 | 0.002298 |
+| 0.20 | Post-hoc | 0.484113 | 0.285678 | 0.225104 | 0.183959 | 0.015982 | 0.002196 |
+
+Native-threshold risk metrics are retained in `STAGE3_TAU_SENSITIVITY.json`,
+but must be interpreted together with this fixed-anchor table because increasing
+τ mechanically relaxes the violation definition. Sensitivity is validation-only
+and does not revise the frozen τ=0.1 setting.
+
+## Stage 3 risk-form ablations — validation summary (5 seeds)
+
+| Integrated risk form | Recall@10 mean±SD | NDCG@10 mean±SD | MRR@10 mean±SD | DVR@10 mean±SD | MED@10 mean±SD | Squared risk@10 mean±SD |
+|---|---:|---:|---:|---:|---:|---:|
+| Asymmetric squared (frozen reference) | 0.484860±0.002974 | 0.284372±0.001572 | 0.223112±0.001432 | 0.183588±0.001670 | 0.016091±0.000193 | 0.002257±0.000029 |
+| Asymmetric linear | 0.484932±0.003166 | 0.283663±0.001457 | 0.222143±0.001275 | 0.182420±0.001688 | 0.015956±0.000202 | 0.002238±0.000031 |
+| Symmetric squared | 0.484932±0.002951 | 0.284721±0.001546 | 0.223550±0.001466 | 0.183809±0.001645 | 0.016121±0.000195 | 0.002261±0.000030 |
+
+These scale-matched OFAT comparisons are validation-only. Linear reduces risk
+with lower NDCG/MRR; symmetric slightly improves NDCG/MRR while increasing
+overchallenge risk. They do not reopen the frozen objective or coefficients.

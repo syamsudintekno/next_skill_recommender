@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import sys
 import unittest
+import hashlib
+import json
 from pathlib import Path
 
 import numpy as np
@@ -11,6 +13,7 @@ ROOT = Path(__file__).parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.models.lightgcn import expected_overchallenge_loss
+from src.difficulty import objective_risk_matrix
 from src.pedagogy_evaluator import evaluate_relevance_and_risk
 from stages.stage3_proposed.run_stage3 import validate_config
 
@@ -62,6 +65,47 @@ class Stage3ObjectiveTests(unittest.TestCase):
         self.assertEqual(base["pedagogy"]["med_at_10"], 1.0)
         self.assertEqual(reranked["pedagogy"]["dvr_at_10"], 0.0)
         self.assertEqual(reranked["pedagogy"]["med_at_10"], 0.0)
+
+    def test_multiseed_posthoc_checkpoint_hashes_are_frozen_and_present(self):
+        manifest = json.loads(
+            (ROOT / "stages/stage3_proposed/configs/multiseed_validation_manifest.json").read_text(encoding="utf-8")
+        )
+        for record in manifest["posthoc"]["source_checkpoints"].values():
+            path = ROOT / record["path"]
+            self.assertTrue(path.is_file())
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), record["sha256"])
+
+    def test_fixed_anchor_metrics_do_not_change_reranking_scores(self):
+        result = evaluate_relevance_and_risk(
+            user_factors=np.array([[1.0]], dtype=np.float32),
+            item_factors=np.array([[2.0], [1.0]], dtype=np.float32),
+            seen_matrix=np.array([[False, False]]), target_item_indices=np.array([0]),
+            target_visible=np.array([True]),
+            risk_matrix=np.array([[0.0, 1.0]], dtype=np.float32),
+            excess_matrix=np.array([[0.0, 1.0]], dtype=np.float32),
+            evaluation_risk_matrix=np.array([[4.0, 0.0]], dtype=np.float32),
+            evaluation_excess_matrix=np.array([[2.0, 0.0]], dtype=np.float32),
+            rerank_weight=1.0, k=1,
+        )
+        self.assertEqual(result["relevance"]["recall_at_10"], 1.0)
+        self.assertEqual(result["pedagogy"]["dvr_at_10"], 1.0)
+        self.assertEqual(result["pedagogy"]["med_at_10"], 2.0)
+
+    def test_risk_form_definitions(self):
+        ability = np.array([0.5], dtype=np.float32)
+        difficulty = np.array([0.2, 0.55, 0.8], dtype=np.float32)
+        np.testing.assert_allclose(
+            objective_risk_matrix(ability, difficulty, 0.1, "asymmetric_squared"),
+            np.array([[0.0, 0.0, 0.04]], dtype=np.float32), atol=1e-7,
+        )
+        np.testing.assert_allclose(
+            objective_risk_matrix(ability, difficulty, 0.1, "asymmetric_linear"),
+            np.array([[0.0, 0.0, 0.2]], dtype=np.float32), atol=1e-7,
+        )
+        np.testing.assert_allclose(
+            objective_risk_matrix(ability, difficulty, 0.1, "symmetric_squared"),
+            np.array([[0.04, 0.0, 0.04]], dtype=np.float32), atol=1e-7,
+        )
 
 
 if __name__ == "__main__":

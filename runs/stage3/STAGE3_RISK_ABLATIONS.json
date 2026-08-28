@@ -1,0 +1,372 @@
+{
+  "summary_id": "STAGE3_RISK_ABLATIONS",
+  "created_at_utc": "2026-08-28T06:46:00.804968+00:00",
+  "status": "VALIDATION_ABLATION_ONLY",
+  "manifest_status": "FROZEN_BEFORE_EXECUTION",
+  "seeds": [
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831
+  ],
+  "records": [
+    {
+      "variant": "asymmetric_squared",
+      "seed": 20260827,
+      "run_id": "DRLGCN_BOUND_001"
+    },
+    {
+      "variant": "asymmetric_squared",
+      "seed": 20260828,
+      "run_id": "DRLGCN_MS_20260828"
+    },
+    {
+      "variant": "asymmetric_squared",
+      "seed": 20260829,
+      "run_id": "DRLGCN_MS_20260829"
+    },
+    {
+      "variant": "asymmetric_squared",
+      "seed": 20260830,
+      "run_id": "DRLGCN_MS_20260830"
+    },
+    {
+      "variant": "asymmetric_squared",
+      "seed": 20260831,
+      "run_id": "DRLGCN_MS_20260831"
+    },
+    {
+      "variant": "asymmetric_linear",
+      "seed": 20260827,
+      "run_id": "DRLGCN_ABL_LINEAR_MS_20260827"
+    },
+    {
+      "variant": "asymmetric_linear",
+      "seed": 20260828,
+      "run_id": "DRLGCN_ABL_LINEAR_MS_20260828"
+    },
+    {
+      "variant": "asymmetric_linear",
+      "seed": 20260829,
+      "run_id": "DRLGCN_ABL_LINEAR_MS_20260829"
+    },
+    {
+      "variant": "asymmetric_linear",
+      "seed": 20260830,
+      "run_id": "DRLGCN_ABL_LINEAR_MS_20260830"
+    },
+    {
+      "variant": "asymmetric_linear",
+      "seed": 20260831,
+      "run_id": "DRLGCN_ABL_LINEAR_MS_20260831"
+    },
+    {
+      "variant": "symmetric_squared",
+      "seed": 20260827,
+      "run_id": "DRLGCN_ABL_SYMMETRIC_MS_20260827"
+    },
+    {
+      "variant": "symmetric_squared",
+      "seed": 20260828,
+      "run_id": "DRLGCN_ABL_SYMMETRIC_MS_20260828"
+    },
+    {
+      "variant": "symmetric_squared",
+      "seed": 20260829,
+      "run_id": "DRLGCN_ABL_SYMMETRIC_MS_20260829"
+    },
+    {
+      "variant": "symmetric_squared",
+      "seed": 20260830,
+      "run_id": "DRLGCN_ABL_SYMMETRIC_MS_20260830"
+    },
+    {
+      "variant": "symmetric_squared",
+      "seed": 20260831,
+      "run_id": "DRLGCN_ABL_SYMMETRIC_MS_20260831"
+    }
+  ],
+  "summaries": {
+    "asymmetric_squared": {
+      "recall_at_10": {
+        "mean": 0.48485993075228206,
+        "sd": 0.0029741227101442932
+      },
+      "ndcg_at_10": {
+        "mean": 0.28437159780788146,
+        "sd": 0.0015715121783332051
+      },
+      "mrr_at_10": {
+        "mean": 0.2231116471349845,
+        "sd": 0.0014315633263415567
+      },
+      "dvr_at_10": {
+        "mean": 0.18358796816689898,
+        "sd": 0.0016704048255841084
+      },
+      "med_at_10": {
+        "mean": 0.016090674325823784,
+        "sd": 0.00019261824592678046
+      },
+      "mean_squared_risk_at_10": {
+        "mean": 0.002256528800353408,
+        "sd": 2.92173421436833e-05
+      },
+      "runtime_seconds": {
+        "mean": 302.41759500000006,
+        "sd": 11.284462070999492
+      }
+    },
+    "asymmetric_linear": {
+      "recall_at_10": {
+        "mean": 0.4849318764332928,
+        "sd": 0.0031656546747227967
+      },
+      "ndcg_at_10": {
+        "mean": 0.283662945705745,
+        "sd": 0.001457021880043421
+      },
+      "mrr_at_10": {
+        "mean": 0.2221432818222242,
+        "sd": 0.0012750962248005955
+      },
+      "dvr_at_10": {
+        "mean": 0.18241985522233714,
+        "sd": 0.0016881332703373732
+      },
+      "med_at_10": {
+        "mean": 0.015956446528434753,
+        "sd": 0.0002023614505106445
+      },
+      "mean_squared_risk_at_10": {
+        "mean": 0.002238252479583025,
+        "sd": 3.1077513923272476e-05
+      },
+      "runtime_seconds": {
+        "mean": 291.23400717999976,
+        "sd": 7.962827062408166
+      }
+    },
+    "symmetric_squared": {
+      "recall_at_10": {
+        "mean": 0.4849318764332929,
+        "sd": 0.0029511229649374447
+      },
+      "ndcg_at_10": {
+        "mean": 0.28472065532001045,
+        "sd": 0.0015457982078790236
+      },
+      "mrr_at_10": {
+        "mean": 0.2235496128994038,
+        "sd": 0.0014660965448659612
+      },
+      "dvr_at_10": {
+        "mean": 0.18380918124185064,
+        "sd": 0.0016452900267670556
+      },
+      "med_at_10": {
+        "mean": 0.016121266409754753,
+        "sd": 0.00019453378032540237
+      },
+      "mean_squared_risk_at_10": {
+        "mean": 0.0022614212706685067,
+        "sd": 2.9735575283493757e-05
+      },
+      "runtime_seconds": {
+        "mean": 296.70918742000066,
+        "sd": 2.3492625857703935
+      }
+    }
+  },
+  "paired_comparisons": {
+    "asymmetric_linear": {
+      "recall_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 7.19456810108432e-05,
+        "ci95_low": -0.0005882040032246631,
+        "ci95_high": 0.0007320953652463495,
+        "per_seed_differences": [
+          0.0005845586582130524,
+          -0.0005395926075812407,
+          -0.0004046944556859722,
+          0.0005845586582130524,
+          0.00013489815189532406
+        ]
+      },
+      "ndcg_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -0.0007086521021364533,
+        "ci95_low": -0.0011972959223613645,
+        "ci95_high": -0.00022000828191154212,
+        "per_seed_differences": [
+          -0.00010293389575644074,
+          -0.0007694481344838189,
+          -0.0009160152423809964,
+          -0.0006045487647960979,
+          -0.0011503144732649129
+        ]
+      },
+      "mrr_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -0.0009683653127602942,
+        "ci95_low": -0.0015426147268531424,
+        "ci95_high": -0.000394115898667446,
+        "per_seed_differences": [
+          -0.00029229717277737266,
+          -0.0008806743765600034,
+          -0.0011180130430096524,
+          -0.0009755491746588907,
+          -0.0015752927967955521
+        ]
+      },
+      "dvr_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -0.00116811294456185,
+        "ci95_low": -0.0013380622368584683,
+        "ci95_high": -0.0009981636522652317,
+        "per_seed_differences": [
+          -0.001160019783283145,
+          -0.0009936603569983271,
+          -0.0013713412166719285,
+          -0.0011195539768895368,
+          -0.001195989388966312
+        ]
+      },
+      "med_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -0.00013422779738903046,
+        "ci95_low": -0.00015323949657000395,
+        "ci95_high": -0.00011521609820805696,
+        "per_seed_differences": [
+          -0.00012098625302314758,
+          -0.00012697093188762665,
+          -0.0001602470874786377,
+          -0.00013442710041999817,
+          -0.0001285076141357422
+        ]
+      },
+      "mean_squared_risk_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -1.827632077038288e-05,
+        "ci95_low": -2.199247315521796e-05,
+        "ci95_high": -1.45601683855478e-05,
+        "per_seed_differences": [
+          -1.5004537999629974e-05,
+          -1.755054108798504e-05,
+          -2.295197919011116e-05,
+          -1.905672252178192e-05,
+          -1.681782305240631e-05
+        ]
+      },
+      "runtime_seconds": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -11.183587820000321,
+        "ci95_low": -31.97542927503399,
+        "ci95_high": 9.608253635033345,
+        "per_seed_differences": [
+          -20.515619900001184,
+          -31.660278800001834,
+          5.1578648000013345,
+          -15.796556199999031,
+          6.89665099999911
+        ]
+      }
+    },
+    "symmetric_squared": {
+      "recall_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 7.19456810108432e-05,
+        "ci95_low": -0.00011153938054540093,
+        "ci95_high": 0.0002554307425670873,
+        "per_seed_differences": [
+          0.00017986420252708024,
+          -0.00017986420252708024,
+          8.993210126356788e-05,
+          0.00017986420252708024,
+          8.993210126356788e-05
+        ]
+      },
+      "ndcg_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 0.00034905751212904734,
+        "ci95_low": 0.00019271485793242175,
+        "ci95_high": 0.0005054001663256729,
+        "per_seed_differences": [
+          0.00037945876327905026,
+          0.00032574926915318603,
+          0.0005441383780917519,
+          0.00020640156234125184,
+          0.00028953958777999667
+        ]
+      },
+      "mrr_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 0.0004379657644192958,
+        "ci95_low": 0.00022700790290225553,
+        "ci95_high": 0.000648923625936336,
+        "per_seed_differences": [
+          0.00045761878353273167,
+          0.0004651844999881971,
+          0.0006858036468180839,
+          0.00022174329809562798,
+          0.0003594785936618383
+        ]
+      },
+      "dvr_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 0.00022121307495165943,
+        "ci95_low": 0.00013459912910913243,
+        "ci95_high": 0.00030782702079418646,
+        "per_seed_differences": [
+          0.00018884042983677296,
+          0.00028775684546558655,
+          0.00023829863765117976,
+          0.0002742682433343746,
+          0.00011690121847038326
+        ]
+      },
+      "med_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 3.059208393096924e-05,
+        "ci95_low": 2.2418023685893065e-05,
+        "ci95_high": 3.876614417604541e-05,
+        "per_seed_differences": [
+          3.568083047866821e-05,
+          2.931058406829834e-05,
+          2.9345974326133728e-05,
+          3.7707388401031494e-05,
+          2.0915642380714417e-05
+        ]
+      },
+      "mean_squared_risk_at_10": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": 4.8924703150987625e-06,
+        "ci95_low": 3.4687201187330933e-06,
+        "ci95_high": 6.316220511464432e-06,
+        "per_seed_differences": [
+          5.920417606830597e-06,
+          3.907596692442894e-06,
+          4.52832318842411e-06,
+          6.287591531872749e-06,
+          3.818422555923462e-06
+        ]
+      },
+      "runtime_seconds": {
+        "direction": "ablation_minus_asymmetric_squared",
+        "mean_difference": -5.7084075799994025,
+        "ci95_low": -22.171515873094844,
+        "ci95_high": 10.754700713096039,
+        "per_seed_differences": [
+          -15.411927600001945,
+          -18.854259699997783,
+          14.614851299998918,
+          -7.607417100000021,
+          -1.2832847999961814
+        ]
+      }
+    }
+  },
+  "test_accessed": false,
+  "interpretation_guard": "OFAT validation evidence only; selected settings remain frozen."
+}

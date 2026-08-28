@@ -1,0 +1,201 @@
+{
+  "summary_id": "STAGE3_MULTI_SEED_VALIDATION",
+  "created_at_utc": "2026-08-28T02:51:53.117517+00:00",
+  "status": "VALIDATION_ONLY",
+  "manifest_status": "FROZEN_BEFORE_EXECUTION",
+  "seeds": [
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831
+  ],
+  "records": [
+    {
+      "family": "integrated",
+      "seed": 20260827,
+      "run_id": "DRLGCN_BOUND_001"
+    },
+    {
+      "family": "integrated",
+      "seed": 20260828,
+      "run_id": "DRLGCN_MS_20260828"
+    },
+    {
+      "family": "integrated",
+      "seed": 20260829,
+      "run_id": "DRLGCN_MS_20260829"
+    },
+    {
+      "family": "integrated",
+      "seed": 20260830,
+      "run_id": "DRLGCN_MS_20260830"
+    },
+    {
+      "family": "integrated",
+      "seed": 20260831,
+      "run_id": "DRLGCN_MS_20260831"
+    },
+    {
+      "family": "posthoc",
+      "seed": 20260827,
+      "run_id": "POSTHOC_BOUND_002"
+    },
+    {
+      "family": "posthoc",
+      "seed": 20260828,
+      "run_id": "POSTHOC_MS_20260828"
+    },
+    {
+      "family": "posthoc",
+      "seed": 20260829,
+      "run_id": "POSTHOC_MS_20260829"
+    },
+    {
+      "family": "posthoc",
+      "seed": 20260830,
+      "run_id": "POSTHOC_MS_20260830"
+    },
+    {
+      "family": "posthoc",
+      "seed": 20260831,
+      "run_id": "POSTHOC_MS_20260831"
+    }
+  ],
+  "summaries": {
+    "integrated": {
+      "recall_at_10": {
+        "mean": 0.48485993075228206,
+        "sd": 0.0029741227101442932
+      },
+      "ndcg_at_10": {
+        "mean": 0.28437159780788146,
+        "sd": 0.0015715121783332051
+      },
+      "mrr_at_10": {
+        "mean": 0.2231116471349845,
+        "sd": 0.0014315633263415567
+      },
+      "dvr_at_10": {
+        "mean": 0.18358796816689898,
+        "sd": 0.0016704048255841084
+      },
+      "med_at_10": {
+        "mean": 0.016090674325823784,
+        "sd": 0.00019261824592678046
+      },
+      "mean_squared_risk_at_10": {
+        "mean": 0.002256528800353408,
+        "sd": 2.92173421436833e-05
+      }
+    },
+    "posthoc": {
+      "recall_at_10": {
+        "mean": 0.4827645127928414,
+        "sd": 0.0031994537882389217
+      },
+      "ndcg_at_10": {
+        "mean": 0.28450692282758994,
+        "sd": 0.0016753320561191931
+      },
+      "mrr_at_10": {
+        "mean": 0.22399747119496208,
+        "sd": 0.0015981024056989437
+      },
+      "dvr_at_10": {
+        "mean": 0.1775891371790837,
+        "sd": 0.0014011910147619688
+      },
+      "med_at_10": {
+        "mean": 0.014850941486656666,
+        "sd": 0.00018160117330961022
+      },
+      "mean_squared_risk_at_10": {
+        "mean": 0.001984887081198394,
+        "sd": 2.9539235510447816e-05
+      }
+    }
+  },
+  "paired_comparison": {
+    "recall_at_10": {
+      "direction": "posthoc_minus_integrated",
+      "mean_difference": -0.002095417959440615,
+      "ci95_low": -0.003015049231564684,
+      "ci95_high": -0.001175786687316546,
+      "per_seed_differences": [
+        -0.002563064886011046,
+        -0.0008993210126354567,
+        -0.0021134043796933177,
+        -0.002832861189801694,
+        -0.0020684383290615616
+      ]
+    },
+    "ndcg_at_10": {
+      "direction": "posthoc_minus_integrated",
+      "mean_difference": 0.00013532501970848766,
+      "ci95_low": -0.0004404400292042511,
+      "ci95_high": 0.0007110900686212265,
+      "per_seed_differences": [
+        0.0001607947838327406,
+        0.0005052696720568295,
+        0.0006184817362714923,
+        -0.0005311116704809771,
+        -7.680942313764705e-05
+      ]
+    },
+    "mrr_at_10": {
+      "direction": "posthoc_minus_integrated",
+      "mean_difference": 0.000885824059977569,
+      "ci95_low": 0.00023482311471977046,
+      "ci95_high": 0.0015368250052353676,
+      "per_seed_differences": [
+        0.0010656597126312284,
+        0.000998496135417748,
+        0.001576987945529712,
+        0.0001783474905018012,
+        0.0006096290158073558
+      ]
+    },
+    "dvr_at_10": {
+      "direction": "posthoc_minus_integrated",
+      "mean_difference": -0.005998830987815296,
+      "ci95_low": -0.006539328526802315,
+      "ci95_high": -0.005458333448828277,
+      "per_seed_differences": [
+        -0.006470032822265187,
+        -0.005283035834719646,
+        -0.006128321568274808,
+        -0.006065374758329217,
+        -0.00604738995548762
+      ]
+    },
+    "med_at_10": {
+      "direction": "posthoc_minus_integrated",
+      "mean_difference": -0.001239732839167118,
+      "ci95_low": -0.0013046109344678602,
+      "ci95_high": -0.001174854743866376,
+      "per_seed_differences": [
+        -0.001290988177061081,
+        -0.0011813053861260414,
+        -0.0012518847361207008,
+        -0.0012858211994171143,
+        -0.001188664697110653
+      ]
+    },
+    "mean_squared_risk_at_10": {
+      "direction": "posthoc_minus_integrated",
+      "mean_difference": -0.00027164171915501357,
+      "ci95_low": -0.0002847497755755729,
+      "ci95_high": -0.00025853366273445426,
+      "per_seed_differences": [
+        -0.000275373924523592,
+        -0.0002658180892467499,
+        -0.00027315167244523764,
+        -0.0002859947271645069,
+        -0.0002578701823949814
+      ]
+    }
+  },
+  "test_accessed": false,
+  "interpretation_guard": "Descriptive and paired validation evidence only; coefficients remain frozen and test targets remain closed."
+}

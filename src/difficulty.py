@@ -146,3 +146,19 @@ def asymmetric_squared_risk(
 ) -> np.ndarray:
     gap = difficulty[None, :] - ability[:, None] - float(tolerance)
     return np.maximum(gap, 0.0) ** 2
+
+
+def objective_risk_matrix(
+    ability: np.ndarray,
+    difficulty: np.ndarray,
+    tolerance: float,
+    form: str,
+) -> np.ndarray:
+    gap = difficulty[None, :] - ability[:, None]
+    if form == "asymmetric_squared":
+        return np.maximum(gap - float(tolerance), 0.0) ** 2
+    if form == "asymmetric_linear":
+        return np.maximum(gap - float(tolerance), 0.0)
+    if form == "symmetric_squared":
+        return np.maximum(np.abs(gap) - float(tolerance), 0.0) ** 2
+    raise ValueError(f"Unknown objective risk form: {form}")

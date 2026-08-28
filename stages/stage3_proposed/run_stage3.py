@@ -17,7 +17,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.data import DevelopmentData
-from src.difficulty import asymmetric_squared_risk, build_development_proxies
+from src.difficulty import asymmetric_squared_risk, build_development_proxies, objective_risk_matrix
 from src.integrity import run_development_integrity
 from src.models.bpr_mf import sample_unseen
 from src.models.lightgcn import (
@@ -62,6 +62,12 @@ def validate_config(config: dict) -> None:
         raise ValueError("posthoc must train the relevance-only objective")
     if config["mode"] != "posthoc" and float(config["rerank_weight"]) != 0.0:
         raise ValueError("rerank_weight is only valid for posthoc")
+    if config.get("risk_form", "asymmetric_squared") not in {
+        "asymmetric_squared", "asymmetric_linear", "symmetric_squared"
+    }:
+        raise ValueError("Unsupported risk_form")
+    if float(config.get("risk_scale", 1.0)) <= 0:
+        raise ValueError("risk_scale must be positive")
 
 
 def main() -> None:
@@ -85,6 +91,11 @@ def main() -> None:
     tolerance = float(config["tolerance"])
     excess_matrix = np.maximum(difficulty[None, :] - ability[:, None] - tolerance, 0.0).astype(np.float32)
     risk_matrix = asymmetric_squared_risk(ability, difficulty, tolerance).astype(np.float32)
+    risk_form = config.get("risk_form", "asymmetric_squared")
+    risk_scale = float(config.get("risk_scale", 1.0))
+    training_risk_matrix = (
+        objective_risk_matrix(ability, difficulty, tolerance, risk_form) * risk_scale
+    ).astype(np.float32)
     seed = int(config["seed"])
     torch.use_deterministic_algorithms(True)
     torch.set_num_threads(int(config["cpu_threads"]))
@@ -92,7 +103,7 @@ def main() -> None:
     model = LightGCN(len(users), len(items), int(config["embedding_dim"]), int(config["layers"]), seed).to(device)
     adjacency = normalized_bipartite_adjacency(edge_users_np, edge_items_np, len(users), len(items), device)
     seen_tensor = torch.as_tensor(seen_matrix, dtype=torch.bool, device=device)
-    risk_tensor = torch.as_tensor(risk_matrix, dtype=torch.float32, device=device)
+    risk_tensor = torch.as_tensor(training_risk_matrix, dtype=torch.float32, device=device)
     all_users_tensor = torch.arange(len(users), dtype=torch.long, device=device)
     optimizer = torch.optim.Adam(model.parameters(), lr=float(config["learning_rate"]))
     rng = np.random.default_rng(seed)
@@ -178,6 +189,24 @@ def main() -> None:
         target_visible=target_visible, risk_matrix=risk_matrix,
         excess_matrix=excess_matrix, rerank_weight=float(config["rerank_weight"]), k=10,
     )
+    evaluation_by_tolerance = {str(tolerance): final_evaluation}
+    for evaluation_tolerance in config.get("evaluation_tolerances", []):
+        evaluation_tolerance = float(evaluation_tolerance)
+        key = str(evaluation_tolerance)
+        if key in evaluation_by_tolerance:
+            continue
+        metric_excess = np.maximum(
+            difficulty[None, :] - ability[:, None] - evaluation_tolerance, 0.0
+        ).astype(np.float32)
+        metric_risk = metric_excess ** 2
+        evaluation_by_tolerance[key] = evaluate_relevance_and_risk(
+            user_factors=final_users.numpy(), item_factors=final_items.numpy(),
+            seen_matrix=seen_matrix, target_item_indices=target_indices,
+            target_visible=target_visible, risk_matrix=risk_matrix,
+            excess_matrix=excess_matrix, evaluation_risk_matrix=metric_risk,
+            evaluation_excess_matrix=metric_excess,
+            rerank_weight=float(config["rerank_weight"]), k=10,
+        )
     output_dir = PROJECT_ROOT / "runs/stage3" / config["run_id"]
     output_dir.mkdir(parents=True, exist_ok=False)
     checkpoint = output_dir / "checkpoint.pt"
@@ -186,9 +215,10 @@ def main() -> None:
         "run_id": config["run_id"], "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "status": "DEVELOPMENT_ONLY_PROVISIONAL", "mode": "development",
         "model": "Difficulty-Regularized LightGCN", "variant": config["mode"],
-        "objective": "BPR + lambda_d * exact full-candidate expected asymmetric squared risk + L2",
+        "objective": f"BPR + lambda_d * exact full-candidate expected {risk_form} risk * risk_scale + L2",
         "selection_metric": "validation NDCG@10", "config": config,
-        "best_epoch": best_epoch, "evaluation": final_evaluation, "history": history,
+        "best_epoch": best_epoch, "evaluation": final_evaluation,
+        "evaluation_by_tolerance": evaluation_by_tolerance, "history": history,
         "runtime_seconds": time.perf_counter() - started, "proxy_audit": proxy_audit,
         "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
         "versions": {"python": platform.python_version(), "numpy": np.__version__, "torch": torch.__version__},

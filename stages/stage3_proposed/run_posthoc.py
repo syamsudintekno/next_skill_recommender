@@ -31,8 +31,13 @@ def main() -> None:
         raise ValueError("Post-hoc config must use mode=posthoc and difficulty_weight=0")
     checkpoint = (PROJECT_ROOT / config["base_checkpoint"]).resolve()
     allowed_root = (PROJECT_ROOT / "runs/stage3/DRLGCN_LAMBDA0_DEV_20260827").resolve()
-    if checkpoint != allowed_root / "checkpoint.pt":
-        raise PermissionError("Bounded post-hoc tuning must use the frozen lambda-zero checkpoint")
+    actual_checkpoint_sha256 = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+    expected_checkpoint_sha256 = config.get("expected_checkpoint_sha256")
+    if expected_checkpoint_sha256 is None:
+        if checkpoint != allowed_root / "checkpoint.pt":
+            raise PermissionError("Bounded post-hoc tuning must use the frozen lambda-zero checkpoint")
+    elif actual_checkpoint_sha256 != expected_checkpoint_sha256:
+        raise ValueError("Post-hoc source checkpoint does not match the frozen expected SHA-256")
 
     data_root = PROJECT_ROOT / "data/canonical"
     integrity = run_development_integrity(data_root)
@@ -59,6 +64,23 @@ def main() -> None:
         risk_matrix=risk, excess_matrix=excess,
         rerank_weight=float(config["rerank_weight"]), k=10,
     )
+    evaluation_by_tolerance = {str(tolerance): evaluation}
+    for evaluation_tolerance in config.get("evaluation_tolerances", []):
+        evaluation_tolerance = float(evaluation_tolerance)
+        key = str(evaluation_tolerance)
+        if key in evaluation_by_tolerance:
+            continue
+        metric_excess = np.maximum(
+            difficulty[None, :] - ability[:, None] - evaluation_tolerance, 0.0
+        ).astype(np.float32)
+        evaluation_by_tolerance[key] = evaluate_relevance_and_risk(
+            user_factors=user_factors.numpy(), item_factors=item_factors.numpy(), seen_matrix=seen,
+            target_item_indices=target_indices, target_visible=target_visible,
+            risk_matrix=risk, excess_matrix=excess,
+            evaluation_risk_matrix=metric_excess ** 2,
+            evaluation_excess_matrix=metric_excess,
+            rerank_weight=float(config["rerank_weight"]), k=10,
+        )
     output_dir = PROJECT_ROOT / "runs/stage3" / config["run_id"]
     output_dir.mkdir(parents=True, exist_ok=False)
     payload = {
@@ -66,8 +88,9 @@ def main() -> None:
         "status": "BOUNDED_TUNING_VALIDATION_ONLY", "mode": "development", "variant": "posthoc",
         "model": "LightGCN + post-hoc asymmetric risk reranking",
         "score_rule": "LightGCN score - rerank_weight * asymmetric_squared_risk",
-        "config": config, "evaluation": evaluation, "proxy_audit": proxy,
-        "source_checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
+        "config": config, "evaluation": evaluation,
+        "evaluation_by_tolerance": evaluation_by_tolerance, "proxy_audit": proxy,
+        "source_checkpoint_sha256": actual_checkpoint_sha256,
         "integrity": integrity, "files_accessed": loader.accessed, "test_accessed": False,
     }
     (output_dir / "result.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")

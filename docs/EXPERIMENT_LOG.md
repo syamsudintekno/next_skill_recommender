@@ -112,3 +112,69 @@
 - **INFERENCE — PROVISIONAL:** at this selection seed, post-hoc gives the stronger NDCG–risk point, whereas integrated retains higher Recall. Multi-seed validation is required before comparative claims.
 - No test or `final_*` artifact was accessed. Selection was independently recomputed and matched `STAGE3_BOUNDED_SELECTION.json`.
 - Trace: `runs/stage3/audits/STAGE3_BOUNDED_SELECTION_AUDIT.json`.
+
+## Stage 3 selected-model five-seed validation freeze — 2026-08-28
+
+- Status: frozen before execution; no new multi-epoch run performed by the preparation step.
+- Integrated configuration: λd=0.03, τ=0.1, T=0.2, inherited selected LightGCN training protocol.
+- Post-hoc configuration: γ=5, τ=0.1, matched selected LightGCN checkpoint per seed.
+- Seeds: 20260827–20260831. The accepted bounded results supply seed 20260827; four new runs per family remain.
+- Reporting: mean±sample SD and paired post-hoc-minus-integrated differences with two-sided 95% paired-t confidence intervals.
+- Checkpoint paths and SHA-256 values are frozen in `stages/stage3_proposed/configs/multiseed_validation_manifest.json`.
+- Test targets remain unopened; coefficient revision from multi-seed results is prohibited.
+
+## Stage 3 selected-model five-seed validation — 2026-08-28
+
+- Status: completed, five matched validation seeds; no test or `final_*` artifact access.
+- Integrated λd=0.03: Recall 0.484860±0.002974; NDCG 0.284372±0.001572; MRR 0.223112±0.001432; DVR 0.183588±0.001670; MED 0.016091±0.000193; squared risk 0.002257±0.000029.
+- Post-hoc γ=5: Recall 0.482765±0.003199; NDCG 0.284507±0.001675; MRR 0.223997±0.001598; DVR 0.177589±0.001401; MED 0.014851±0.000182; squared risk 0.001985±0.000030.
+- Paired post-hoc-minus-integrated Recall difference: -0.002095, 95% CI [-0.003015, -0.001176].
+- Paired NDCG difference: +0.000135, 95% CI [-0.000440, +0.000711].
+- Paired MRR difference: +0.000886, 95% CI [+0.000235, +0.001537].
+- Paired DVR difference: -0.005999, 95% CI [-0.006539, -0.005458].
+- Paired MED difference: -0.001240, 95% CI [-0.001305, -0.001175].
+- Paired squared-risk difference: -0.000272, 95% CI [-0.000285, -0.000259].
+- **INFERENCE — VALIDATION ONLY:** post-hoc provides consistently lower overchallenge exposure, integrated retains higher Recall, and NDCG is not clearly separated by the paired interval. These are not final/test claims.
+- All five integrated runs selected epoch 100; the cap remains unchanged.
+- Trace: `runs/stage3/STAGE3_MULTI_SEED_VALIDATION.json` and `runs/stage3/audits/STAGE3_MULTI_SEED_AUDIT.json`.
+
+## Stage 3 τ-sensitivity freeze — 2026-08-28
+
+- Status: frozen before execution; multi-epoch sensitivity runs not executed by the preparation step.
+- τ values: 0, 0.05, 0.1, and 0.2; five seeds; integrated λd=0.03; post-hoc γ=5; T=0.2.
+- Completed τ=0.1 runs are reused. New budget: 15 integrated trainings and 15 post-hoc evaluations.
+- Every result reports native-τ risk metrics plus fixed-anchor τ_eval=0.1 metrics to separate ranking changes from threshold-definition changes.
+- Sensitivity cannot revise τ, λd, γ, or any frozen training/evaluation choice. Test targets remain closed.
+- Manifest: `stages/stage3_proposed/configs/tau_sensitivity_manifest.json`.
+
+## Stage 3 τ sensitivity — 2026-08-28
+
+- Status: completed and audited; τ `{0, 0.05, 0.1, 0.2}`, five seeds, integrated λd=0.03 and post-hoc γ=5.
+- Audit scope: 30 new results plus 10 reused τ=0.1 results. All configs, seed mappings, checkpoint/source hashes, exposure counts, and fixed-anchor outputs passed; no test or `final_*` access.
+- Native DVR means for integrated across increasing τ: 0.510943, 0.347173, 0.183588, 0.072580. Post-hoc: 0.499338, 0.338119, 0.177589, 0.071109.
+- Fixed-anchor τ_eval=0.1 DVR means for integrated: 0.180369, 0.182178, 0.183588, 0.185206. Post-hoc: 0.162182, 0.170876, 0.177589, 0.183959.
+- Fixed-anchor NDCG means for integrated: 0.282073, 0.283253, 0.284372, 0.285926. Post-hoc: 0.281769, 0.283346, 0.284507, 0.285678.
+- **INFERENCE — VALIDATION ONLY:** larger τ improves relevance while making ranked lists less conservative under a common τ=0.1 definition. The sharp native-risk decline is partly mechanical and must not be presented alone.
+- Mean integrated runtime for the three new τ groups was approximately 294–309 seconds per run.
+- Frozen τ=0.1 and selected coefficients remain unchanged.
+- Trace: `runs/stage3/STAGE3_TAU_SENSITIVITY.json` and `runs/stage3/audits/STAGE3_TAU_SENSITIVITY_AUDIT.json`.
+
+## Stage 3 risk-form ablation freeze — 2026-08-28
+
+- Status: frozen before execution; ten new integrated trainings remain.
+- Reference: asymmetric-squared, τ=0.1, T=0.2, λd=0.03, five existing selected runs.
+- Ablations: asymmetric-linear and symmetric-squared, each on the same five seeds.
+- Target-free unseen-candidate means were 0.01275518 (asymmetric-squared), 0.05411641 (linear), and 0.01435418 (symmetric-squared).
+- Frozen scale factors are 0.2356989647 for linear and 0.8886040153 for symmetric-squared.
+- Reporting includes relevance, frozen overchallenge metrics, paired 95% CIs, and runtime. Test targets remain closed.
+- Manifest: `stages/stage3_proposed/configs/risk_ablation_manifest.json`.
+
+## Stage 3 risk-form ablations — 2026-08-28
+
+- Status: passed audit; ten new validation runs plus five reused asymmetric-squared reference runs, using five matched seeds.
+- All ten new checkpoints matched their reported SHA-256 values; configurations matched the frozen OFAT manifest; independently recomputed means and sample SDs matched exactly.
+- Asymmetric-linear minus asymmetric-squared: Recall +0.000072 (95% CI [-0.000588, +0.000732]); NDCG -0.000709 ([-0.001197, -0.000220]); MRR -0.000968 ([-0.001543, -0.000394]); DVR -0.001168 ([-0.001338, -0.000998]); squared risk -0.0000183 ([-0.0000220, -0.0000146]).
+- Symmetric-squared minus asymmetric-squared: Recall +0.000072 (95% CI [-0.000112, +0.000255]); NDCG +0.000349 ([+0.000193, +0.000505]); MRR +0.000438 ([+0.000227, +0.000649]); DVR +0.000221 ([+0.000135, +0.000308]); squared risk +0.00000489 ([+0.00000347, +0.00000632]).
+- **INFERENCE — VALIDATION ONLY:** linear is more conservative but loses ranking quality; symmetric slightly improves ranking quality while worsening overchallenge risk. Neither universally dominates the frozen asymmetric-squared formulation.
+- Selected settings remain unchanged. No test or `final_*` artifact was accessed.
+- Trace: `runs/stage3/STAGE3_RISK_ABLATIONS.json` and `runs/stage3/audits/STAGE3_RISK_ABLATIONS_AUDIT.json`.

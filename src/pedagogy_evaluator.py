@@ -16,6 +16,8 @@ def evaluate_relevance_and_risk(
     target_visible: np.ndarray,
     risk_matrix: np.ndarray,
     excess_matrix: np.ndarray,
+    evaluation_risk_matrix: np.ndarray | None = None,
+    evaluation_excess_matrix: np.ndarray | None = None,
     rerank_weight: float = 0.0,
     k: int = 10,
 ) -> dict:
@@ -37,8 +39,10 @@ def evaluate_relevance_and_risk(
     # Stable sort retains ascending lexical item index for exact score ties.
     topk = np.argsort(-scores, axis=1, kind="stable")[:, :k]
     row = np.arange(scores.shape[0])[:, None]
-    topk_risk = risk_matrix[row, topk]
-    topk_excess = excess_matrix[row, topk]
+    metric_risk = risk_matrix if evaluation_risk_matrix is None else evaluation_risk_matrix
+    metric_excess = excess_matrix if evaluation_excess_matrix is None else evaluation_excess_matrix
+    topk_risk = metric_risk[row, topk]
+    topk_excess = metric_excess[row, topk]
     exposure = np.bincount(topk.ravel(), minlength=scores.shape[1])
     return {
         "relevance": asdict(relevance),

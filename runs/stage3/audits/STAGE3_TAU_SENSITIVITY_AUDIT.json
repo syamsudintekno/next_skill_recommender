@@ -1,0 +1,51 @@
+{
+  "audit_id": "STAGE3_TAU_SENSITIVITY_AUDIT",
+  "created_date": "2026-08-28",
+  "status": "PASS",
+  "scope": "Four tau values, two selected variants, five matched validation seeds",
+  "new_runs_audited": 30,
+  "reused_tau_0_1_runs": 10,
+  "manifest_compliance": true,
+  "summary_recomputed": true,
+  "integrated_checkpoint_hashes_verified": 15,
+  "posthoc_source_checkpoint_hashes_verified": 15,
+  "fixed_anchor_present": 30,
+  "forbidden_file_accesses": [],
+  "test_accessed": false,
+  "fixed_anchor_tau": 0.1,
+  "anchor_means": {
+    "0.0": {
+      "integrated": {"recall": 0.48565133324340126, "ndcg": 0.28207313651466986, "mrr": 0.2198233369520298, "dvr": 0.18036868845825277, "med": 0.015733218006789684, "squared_risk": 0.0022024077363312243},
+      "posthoc": {"recall": 0.47932910652457394, "ndcg": 0.28176923849873264, "mrr": 0.2214769491890765, "dvr": 0.16218155658468594, "med": 0.01291726641356945, "squared_risk": 0.001674292399547994}
+    },
+    "0.05": {
+      "integrated": {"recall": 0.4849318764332929, "ndcg": 0.28325330775251406, "mrr": 0.22159863588704815, "dvr": 0.18217795962411762, "med": 0.015909334644675255, "squared_risk": 0.002227612677961588},
+      "posthoc": {"recall": 0.4812086874409821, "ndcg": 0.2833461045779567, "mrr": 0.22295301333207712, "dvr": 0.1708763095184569, "med": 0.01395275592803955, "squared_risk": 0.001837014639750123}
+    },
+    "0.1": {
+      "integrated": {"recall": 0.48485993075228206, "ndcg": 0.28437159780788146, "mrr": 0.2231116471349845, "dvr": 0.18358796816689898, "med": 0.016090674325823784, "squared_risk": 0.002256528800353408},
+      "posthoc": {"recall": 0.4827645127928414, "ndcg": 0.28450692282758994, "mrr": 0.22399747119496208, "dvr": 0.1775891371790837, "med": 0.014850941486656666, "squared_risk": 0.001984887081198394}
+    },
+    "0.2": {
+      "integrated": {"recall": 0.4847430190206394, "ndcg": 0.2859259702443979, "mrr": 0.22522688941277905, "dvr": 0.1852057011825008, "med": 0.016336729377508165, "squared_risk": 0.0022980782203376295},
+      "posthoc": {"recall": 0.48411349431179457, "ndcg": 0.2856782185870641, "mrr": 0.2251040464449341, "dvr": 0.18395935434557797, "med": 0.015981895476579668, "squared_risk": 0.0021963010542094706}
+    }
+  },
+  "native_dvr_means": {
+    "integrated": {"0.0": 0.5109428532889708, "0.05": 0.34717323861337174, "0.1": 0.18358796816689898, "0.2": 0.0725803695876984},
+    "posthoc": {"0.0": 0.49933815925542924, "0.05": 0.33811878962276876, "0.1": 0.1775891371790837, "0.2": 0.0711092127152556}
+  },
+  "integrated_runtime_seconds": {
+    "tau_0.0": {"mean": 295.29142953999946, "sd": 3.2902467890546516},
+    "tau_0.05": {"mean": 293.72124836, "sd": 4.910802311229013},
+    "tau_0.2": {"mean": 308.5149697800014, "sd": 13.345977412299941}
+  },
+  "interpretation": [
+    "Native DVR decreases sharply as tau increases, but this is partly mechanical because the violation threshold itself is relaxed.",
+    "Under the fixed tau_eval=0.1 anchor, DVR, MED, and squared risk increase with training/reranking tau for both variants; smaller tau produces more conservative ranked lists.",
+    "Lower tau improves fixed-anchor risk at a relevance cost, especially Recall for post-hoc and NDCG/MRR for integrated.",
+    "At tau=0.2 the two methods converge in relevance and anchor risk, while post-hoc-minus-integrated NDCG is slightly negative with a paired interval excluding zero.",
+    "Sensitivity is analysis-only and does not revise the frozen tau=0.1, lambda_d=0.03, or gamma=5 settings."
+  ],
+  "next_required_step": "Complete asymmetric-vs-symmetric and linear-vs-squared ablations, then close Stage-3 design freeze"
+}

@@ -1,0 +1,30 @@
+{
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "frozen_date": "2026-08-28",
+  "purpose": "Five-seed validation of the two bounded-selected Stage-3 variants",
+  "seeds": [20260827, 20260828, 20260829, 20260830, 20260831],
+  "shared": {"tolerance": 0.1, "temperature": 0.2, "k": 10, "test_access": false},
+  "integrated": {
+    "difficulty_weight": 0.03,
+    "seed_20260827_source_run": "DRLGCN_BOUND_001",
+    "new_runs": ["DRLGCN_MS_20260828", "DRLGCN_MS_20260829", "DRLGCN_MS_20260830", "DRLGCN_MS_20260831"]
+  },
+  "posthoc": {
+    "rerank_weight": 5.0,
+    "seed_20260827_source_run": "POSTHOC_BOUND_002",
+    "new_runs": ["POSTHOC_MS_20260828", "POSTHOC_MS_20260829", "POSTHOC_MS_20260830", "POSTHOC_MS_20260831"],
+    "source_checkpoints": {
+      "20260827": {"path": "runs/stage2/lightgcn/LIGHTGCN_BOUND_004/checkpoint.pt", "sha256": "18c492b58279b9e6a08990bfba3fde1e95ef1be232baaeb284a6729fea2d4a32"},
+      "20260828": {"path": "runs/stage2/lightgcn/LIGHTGCN_MS_20260828/checkpoint.pt", "sha256": "dee99c09bcc7b4c04e09e5d56d323bf240003075f7f35f1fa4e0a768b7ca49e8"},
+      "20260829": {"path": "runs/stage2/lightgcn/LIGHTGCN_MS_20260829/checkpoint.pt", "sha256": "4a50bdfdd6076a31e7199e33e69fa01eb808a99f9b9f8b0f7cf396a2aca32706"},
+      "20260830": {"path": "runs/stage2/lightgcn/LIGHTGCN_MS_20260830/checkpoint.pt", "sha256": "35cb924130fecb9948e1f27dabd28b351b4580b330006232bace61f57b8c0389"},
+      "20260831": {"path": "runs/stage2/lightgcn/LIGHTGCN_MS_20260831/checkpoint.pt", "sha256": "8e0e4b332b53d333d7265042e83ef871b46cabdf4d4c0d642137e4ce882a8bbe"}
+    }
+  },
+  "reporting": {
+    "descriptive": "mean and sample SD across five predeclared seeds",
+    "paired_comparison": "post-hoc minus integrated per matched seed, mean difference and two-sided 95% paired-t confidence interval",
+    "selection_prohibition": "multi-seed results cannot revise the already frozen coefficients",
+    "next_step": "tau sensitivity only after this validation is complete"
+  }
+}
