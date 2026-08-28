@@ -46,7 +46,7 @@ to isolate an overchallenge term in the ranking objective.
 Learner-state models address a related but different problem. EKT combines
 exercise content with recurrent representations of knowledge acquisition to
 predict student performance on future exercises
-([Liu et al., 2019](https://arxiv.org/abs/1906.05658)). Such prediction models
+([Liu et al., 2021](https://doi.org/10.1109/TKDE.2019.2924374)). Such prediction models
 can provide rich estimates of learner state, whereas our ability variable is a
 transparent, prefix-only behavioral proxy. However, predicting correctness for
 a supplied exercise is not equivalent to ranking the complete unseen catalog,

@@ -20,6 +20,7 @@ Research code for the JOIN paper **“Balancing Relevance and Overchallenge in G
 - Stage 2: conditionally complete; the original complete 12-file Stage 1 handoff manifest remains unavailable.
 - Stage 3: complete and frozen after multi-seed validation, sensitivity, and risk-form ablations.
 - Stage 4: one-time final test evaluation complete and locked; no rerun or reselection is permitted.
+- Manuscript: complete English section draft assembled at `manuscript/FULL_MANUSCRIPT_DRAFT.md`; submission readiness remains blocked by the items in `docs/MANUSCRIPT_INTEGRATION_AUDIT.md`.
 - Test targets remain unavailable to all development runners.
 
 Run Stage 2 checks from the project root with:

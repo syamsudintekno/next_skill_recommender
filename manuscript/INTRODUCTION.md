@@ -11,7 +11,7 @@ difficulty substantially exceeds a learner-specific reference point.
 
 Graph collaborative filtering provides a natural representation for this
 setting. LightGCN simplifies graph recommendation to normalized neighborhood
-aggregation over a user--item interaction graph and is commonly optimized with
+aggregation over a user–item interaction graph and is commonly optimized with
 pairwise ranking loss
 ([He et al., 2020](https://doi.org/10.1145/3397271.3401063)). Educational graph
 models have also incorporated richer relations for knowledge-concept
@@ -34,7 +34,7 @@ filtering itself, and how does doing so compare with modifying scores only after
 training?
 
 We study next-new-skill recommendation using a temporally split ASSISTments
-interaction dataset. Exposure defines the learner--skill graph, while
+interaction dataset. Exposure defines the learner–skill graph, while
 correctness is used separately to construct behavioral proxies. Skill
 difficulty is estimated from first-exposure success rates using empirical-Bayes
 smoothing. Learner ability is summarized from successfully encountered skills
@@ -60,7 +60,7 @@ This study addresses the following research questions:
   affect Top-K ranking accuracy and learner-specific overchallenge exposure
   relative to relevance-only LightGCN?
 - **RQ2:** How does integrated regularization compare with matched post-hoc
-  reranking in the relevance--overchallenge trade-off?
+  reranking in the relevance–overchallenge trade-off?
 - **RQ3:** How sensitive is that trade-off to the regularization weight
   \(\lambda_d\) and tolerance \(\tau\)?
 
@@ -74,7 +74,7 @@ The contributions are threefold:
    score-level post-hoc reranking using the same empirical risk, backbone,
    temporal split, full candidate sets, evaluation metrics, tuning discipline,
    and matched seeds.
-3. We characterize the relevance--risk frontier using ranking metrics together
+3. We characterize the relevance–risk frontier using ranking metrics together
    with violation rate, mean excess difficulty, and squared exposure risk, and
    examine coefficient, tolerance, and risk-form sensitivity under a
    leakage-controlled protocol.
