@@ -16,3 +16,5 @@
 - Audited five-seed risk-form ablation results were logged as validation-only evidence; no test result or final manuscript claim was added.
 - Final experiment and one-time test protocol was frozen; no final training, test result, or manuscript claim was added.
 - One-time final test results were audited and locked. The manuscript may now use the final relevance-risk trade-off evidence, subject to the recorded non-causal and non-superiority claim guards.
+- Added the first English Results draft at `manuscript/RESULTS.md`, covering the locked final table, paired RQ1–RQ2 comparisons, validation-only λd/τ sensitivity, and risk-form ablations. No new numerical result or citation was introduced.
+- Added a deterministic exporter and generated table source at `manuscript/generated/RESULTS_TABLES.md`; the manuscript tables are now traceable directly to the locked Stage 4 summary.
