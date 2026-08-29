@@ -8,7 +8,7 @@ Audit date: 2026-08-29
   and Experimental Setup, Results, Discussion and Limitations, Conclusion, Data
   and Code Availability, and References have source files and a deterministic
   assembly order.
-- **NOT SUBMISSION-READY:** unresolved literature-coverage, author/archive,
+- **NOT SUBMISSION-READY:** a pre-submission database refresh, author/archive,
   and journal-format items remain below.
 
 ## Cross-section checks
@@ -44,10 +44,17 @@ Audit date: 2026-08-29
    `docs/DATA_AUDIT.md`. The absence of a public mirror checksum is stated; the
    missing original 12-file Stage 1 artifact manifest remains a separate
    reportable limitation.
-2. **OPEN — literature coverage:** reconcile the targeted primary-source
-   comparison with the author's SLR and perform the broader database search
-   described in `docs/NOVELTY_MATRIX.md`. No priority claim is allowed in the
-   meantime.
+2. **PARTIAL — literature coverage strengthened:** the novelty matrix is now
+   reconciled with the author's 84-study, 2019--2025 SLR and a targeted
+   primary-source update through 2026-08-29. The update adds multi-objective
+   RL, cognitive-diagnosis selection, graph-plus-difficulty filtering,
+   constrained exercise-group assembly, neural reranking, and 2026
+   difficulty-adaptive work. Related Work now distinguishes these from the
+   present task--objective--evaluation combination; the evidence and residual
+   search requirements are recorded in `docs/LITERATURE_SEARCH_AUDIT.md`. A
+   final indexed-database
+   refresh (Scopus/Web of Science/ACM/IEEE) and search export are still required
+   close to submission; no priority claim is allowed.
 3. **OPEN — author metadata:** supply the final author order, affiliations,
    corresponding-author details, acknowledgments/funding, conflict-of-interest
    statement, and any required ethics statement.

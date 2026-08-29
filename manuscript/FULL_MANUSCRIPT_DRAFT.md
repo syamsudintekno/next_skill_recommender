@@ -141,83 +141,98 @@ LightGCN removes feature transformations and nonlinear activations from graph
 collaborative filtering, retaining normalized neighborhood aggregation and a
 weighted combination of layer-wise embeddings
 ([He et al., 2020](https://doi.org/10.1145/3397271.3401063)). Its deliberately
-simple propagation makes it a useful backbone for isolating the effect of an
-additional educational objective. More recent graph contrastive recommenders
-seek stronger representations through self-supervision. XSimGCL uses
-noise-based embedding augmentation and cross-layer contrast while sharing the
-recommendation and contrastive propagation pipeline
+simple propagation makes it a useful backbone for isolating an additional
+educational objective. XSimGCL adds noise-based embedding augmentation and
+cross-layer contrast to a LightGCN-style recommendation pipeline
 ([Yu et al., 2023](https://doi.org/10.1109/TKDE.2023.3288135)). We include it as
-a modern graph baseline to distinguish gains from difficulty-aware control from
-gains obtainable through a stronger relevance-only graph model.
+a modern graph baseline to distinguish difficulty-aware control from a stronger
+relevance-only representation learner.
 
-These methods optimize general implicit-feedback ranking. They do not, in their
-cited formulations, represent learner ability and empirical skill difficulty as
-an asymmetric Top-K exposure cost. Our work retains their collaborative-ranking
-foundation but adds a candidate-aware expected-risk term to the LightGCN
-training objective.
+These methods optimize general implicit-feedback ranking. In their cited
+formulations, they do not represent learner ability and empirical skill
+difficulty as an asymmetric Top-K exposure cost. Our work retains their
+collaborative-ranking foundation but adds a candidate-aware expected-risk term
+to LightGCN training.
 
-## Graph and learner-state modeling in education
+## Educational graphs and learner-state modeling
 
-Educational recommendation research has used graphs to incorporate entities and
-relations beyond a homogeneous learner–item interaction matrix. ACKRec constructs
-a heterogeneous information network of learners, knowledge concepts, courses,
-videos, and teachers, then uses meta-path-guided graph convolution and attention
-for MOOC knowledge-concept recommendation
-([Gong et al., 2020](https://doi.org/10.1145/3397271.3401057)). This demonstrates
-that graph representation learning can support educational recommendation, but
-its emphasis is interest/context propagation across heterogeneous relations.
-The present study instead deliberately uses a minimal binary learner–skill graph
-to isolate an overchallenge term in the ranking objective.
+Educational recommendation has used graphs to represent relations beyond a
+homogeneous learner--item matrix. ACKRec constructs a heterogeneous network of
+learners, knowledge concepts, courses, videos, and teachers, then applies
+meta-path-guided graph convolution and attention for MOOC knowledge-concept
+recommendation ([Gong et al., 2020](https://doi.org/10.1145/3397271.3401057)).
+Yan et al. combine deep knowledge tracing, a course knowledge graph, and a
+learner knowledge-structure graph; candidate exercises are subsequently filtered
+using difficulty, diversity, and novelty
+([2023](https://doi.org/10.2298/CSIS220706024Y)). These studies establish that
+graph structure and difficulty-aware selection can coexist in educational
+recommendation. They do not, however, test the same graph-collaborative-filtering
+objective or a matched integrated-versus-score-level risk intervention.
 
 Learner-state models address a related but different problem. EKT combines
 exercise content with recurrent representations of knowledge acquisition to
-predict student performance on future exercises
-([Liu et al., 2021](https://doi.org/10.1109/TKDE.2019.2924374)). Such prediction models
-can provide rich estimates of learner state, whereas our ability variable is a
-transparent, prefix-only behavioral proxy. However, predicting correctness for
-a supplied exercise is not equivalent to ranking the complete unseen catalog,
-and predictive accuracy alone does not characterize which difficulty levels a
-Top-K recommender exposes.
+predict performance on future exercises
+([Liu et al., 2021](https://doi.org/10.1109/TKDE.2019.2924374)). More recently,
+LT-MKT has modeled cognitive load and knowledge transfer for multi-domain
+knowledge tracing ([Zhang et al., 2026](https://doi.org/10.1145/3799682.3841120)).
+Such models can provide richer learner-state estimates than our transparent,
+prefix-only behavioral proxy. Predicting correctness for a supplied exercise,
+however, is not equivalent to ranking the complete unseen catalog, and
+predictive accuracy alone does not characterize the difficulty exposure of a
+Top-K list.
 
-## Difficulty-aware educational recommendation
+## Difficulty-aware and multi-objective educational recommendation
 
-Difficulty has been modeled explicitly in learning-path recommendation. The
-closest verified anchor is the Difficulty-constrained Learning Path
-Recommendation framework of Zhang et al.
-([2024](https://doi.org/10.1145/3637528.3671947)). That work separates learning
-and practice items, constructs a hierarchical graph, and applies
+Ability--difficulty matching and multi-objective control precede this study.
+Huang et al. formulate adaptive exercise recommendation as deep reinforcement
+learning with Review and Explore goals, difficulty smoothness, and engagement
+([2019](https://doi.org/10.1145/3357384.3357995)). Du et al. use cognitive
+diagnosis to incorporate student ability and exercise difficulty in exercise
+selection ([2022](https://doi.org/10.1145/3565387.3565416)). Yang et al. cast
+personalized exercise-group assembly as a constrained multi-objective
+evolutionary problem informed by cognitive diagnosis
+([2023](https://doi.org/10.1109/TETCI.2022.3220812)). These approaches establish
+important precedents for adaptive, ability-aware, and explicitly multi-objective
+recommendation, while differing from learned full-ranking graph scores and the
+one-sided excess-risk expectation used here.
+
+Difficulty has also been modeled in sequential learning-path recommendation.
+The Difficulty-constrained Learning Path Recommendation framework separates
+learning and practice items, constructs a hierarchical graph, and applies
 difficulty-driven hierarchical reinforcement learning to generate paths
-step-by-step. Its experiments use simulators based on benchmark datasets and
-evaluate path efficiency and smoothness.
+step-by-step ([Zhang et al., 2024](https://doi.org/10.1145/3637528.3671947)). A
+2026 personalized exercise framework likewise combines deep knowledge tracing,
+deep reinforcement learning, and a difficulty-adaptive constraint
+([Zhu et al., 2026](https://doi.org/10.1145/3802133.3802217)). These sequential
+policies differ from our static Top-10 next-new-skill ranking task in action
+space, feedback assumptions, output, and evaluation.
 
-Our setting differs along four dimensions. First, the output is a Top-10 list of
-next-unseen skills rather than a sequential path containing learning and practice
-actions. Second, the model is trained from a binary collaborative-exposure graph
-rather than through a hierarchical reinforcement-learning environment. Third,
-difficulty control is a soft asymmetric expected-exposure regularizer over the
-full candidate catalog. Fourth, evaluation reports conventional ranking
-relevance together with learner-specific overchallenge exposure and compares
-training integration against score-level reranking. These distinctions prevent
-claims about learning-path quality or simulated learning effectiveness from
-being transferred to our offline Top-K task.
+Post-hoc control is an especially relevant comparator. NR4DER first predicts
+mastery and filters exercises to an appropriate-difficulty candidate subset,
+then applies neural reranking to balance relevance and learning-pattern
+diversity ([Cheng et al., 2025](https://doi.org/10.1145/3726302.3730046)). This
+shows that difficulty-aware filtering and educational reranking are already
+established. Our question is consequently narrower: under one LightGCN backbone
+and one asymmetric risk definition, does placing the signal in the training
+objective yield a different relevance--risk operating point from applying the
+matched risk only to final scores?
 
 ## Positioning of this study
 
-Prior work establishes pairwise implicit-feedback ranking, simplified graph
-collaborative filtering, contrastive graph representation learning, educational
-knowledge-concept recommendation, learner-state prediction, and difficulty-aware
-sequential path generation. The contribution examined here is narrower than
-“difficulty-aware recommendation” in general: an empirical, learner-specific,
-one-sided overchallenge risk is integrated into the LightGCN training objective
-through the model-induced distribution over unseen candidates. A matched
-post-hoc comparator then tests whether changing the training objective occupies
-a different relevance–risk point from changing scores after training.
+Prior work therefore spans multi-objective reinforcement learning,
+cognitive-diagnosis-based selection, graph-supported filtering, constrained
+exercise-group assembly, sequential difficulty-aware paths, and neural
+reranking. The contribution examined here is one specific combination: an
+empirical, learner-specific, one-sided overchallenge risk is integrated into a
+LightGCN objective through the model-induced distribution over all unseen
+candidates, then compared with the matched score-level intervention under a
+temporal full-ranking protocol that reports both relevance and risk exposure.
 
-This positioning is a combination claim, not a priority claim. The targeted
-primary-source comparison did not identify an identical task–objective–evaluation
-combination, but it is not sufficient to establish that no such work exists. A
-broader database search and reconciliation with the author's systematic review
-remain necessary before submission.
+This is a bounded combination claim, not a priority claim. The targeted
+primary-source comparison, reconciled with the author's 2019--2025 systematic
+review and updated through August 2026, did not identify an identical
+task--objective--evaluation combination. It cannot establish absence from the
+literature, and the search must be refreshed before submission.
 
 # Method and Experimental Setup
 
@@ -936,6 +951,17 @@ ASSISTmentsData. (n.d.). *2012-13 School Data with Affect*. Retrieved August
 28, 2026, from
 https://sites.google.com/site/assistmentsdata/datasets/2012-13-school-data-with-affect
 
+Cheng, X., Zhou, X., Fang, L., He, C., Zhou, Y., Luo, W., Gong, Z., and Guan,
+Q. (2025). NR4DER: Neural Re-ranking for Diversified Exercise Recommendation.
+In *Proceedings of the 48th International ACM SIGIR Conference on Research and
+Development in Information Retrieval* (pp. 1738--1747).
+https://doi.org/10.1145/3726302.3730046
+
+Du, H., Li, N., Ma, F., and Palaoag, T. D. (2022). Personalization Exercise
+Recommendation Based on Cognitive Diagnosis. In *Proceedings of the 6th
+International Conference on Computer Science and Application Engineering*,
+Article 29, 1--5. https://doi.org/10.1145/3565387.3565416
+
 Feng, M., Heffernan, N., and Koedinger, K. (2009). Addressing the assessment
 challenge with an online system that tutors as it assesses. *User Modeling and
 User-Adapted Interaction, 19*(3), 243--266.
@@ -952,6 +978,12 @@ Simplifying and Powering Graph Convolution Network for Recommendation. In
 *Proceedings of the 43rd International ACM SIGIR Conference on Research and
 Development in Information Retrieval*.
 https://doi.org/10.1145/3397271.3401063
+
+Huang, Z., Liu, Q., Zhai, C., Yin, Y., Chen, E., Gao, W., and Hu, G. (2019).
+Exploring Multi-Objective Exercise Recommendations in Online Education
+Systems. In *Proceedings of the 28th ACM International Conference on
+Information and Knowledge Management* (pp. 1261--1270).
+https://doi.org/10.1145/3357384.3357995
 
 Liu, Q., Huang, Z., Yin, Y., Chen, E., Xiong, H., Su, Y., and Hu, G. (2021).
 EKT: Exercise-Aware Knowledge Tracing for Student Performance Prediction.
@@ -973,8 +1005,31 @@ XSimGCL: Towards Extremely Simple Graph Contrastive Learning for
 Recommendation. *IEEE Transactions on Knowledge and Data Engineering*.
 https://doi.org/10.1109/TKDE.2023.3288135
 
+Yan, Z., Du, H., Zhang, L., and Zhao, J. (2023). Personalization Exercise
+Recommendation Framework based on Knowledge Concept Graph. *Computer Science
+and Information Systems, 20*(2), 857--878.
+https://doi.org/10.2298/CSIS220706024Y
+
+Yang, S., Wei, H., Ma, H., Tian, Y., Zhang, X., Cao, Y., and Jin, Y. (2023).
+Cognitive Diagnosis-Based Personalized Exercise Group Assembly via a
+Multi-Objective Evolutionary Algorithm. *IEEE Transactions on Emerging Topics
+in Computational Intelligence, 7*(3), 829--844.
+https://doi.org/10.1109/TETCI.2022.3220812
+
 Zhang, H., Shen, S., Xu, B., Huang, Z., Wu, J., Sha, J., and Wang, S. (2024).
 Item-Difficulty-Aware Learning Path Recommendation: From a Real Walking
 Perspective. In *Proceedings of the 30th ACM SIGKDD Conference on Knowledge
 Discovery and Data Mining* (pp. 4167–4178).
 https://doi.org/10.1145/3637528.3671947
+
+Zhang, H., Wang, S., Wu, J., Ding, L., Liu, S., Huang, Z., Sha, J., Wang, S.,
+and Liu, Q. (2026). Incorporating Cognitive Load and Knowledge Transfer for
+Multi-Domain Knowledge Tracing. In *Proceedings of the 35th ACM International
+Conference on Information and Knowledge Management*.
+https://doi.org/10.1145/3799682.3841120
+
+Zhu, Z., Li, M., and Di Nardo, M. (2026). A Sustainable Personalized Education
+Recommendation Method Based on Deep Reinforcement Learning. In *Proceedings of
+the 2026 3rd International Conference on Informatics Education and Computer
+Technology Applications* (pp. 516--520).
+https://doi.org/10.1145/3802133.3802217

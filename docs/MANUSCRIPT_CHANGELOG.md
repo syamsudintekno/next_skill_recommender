@@ -38,3 +38,13 @@
 ## 2026-08-29
 
 - Resumed interrupted figure QA after the workstation shutdown. Corrected overlapping labels in Figure 1, replaced the visually indistinguishable LightGCN-family overlay in Figure 2 with a variant-minus-LightGCN concentration panel, and verified PNG/PDF/SVG generation is byte-deterministic. No target, training, evaluation, configuration, or selection path was reopened.
+- Reconciled the novelty matrix with the author's 84-study 2019--2025 SLR and
+  a targeted primary-source update through 2026-08-29. Added direct precedents
+  for multi-objective RL, ability--difficulty selection, graph-plus-difficulty
+  filtering, constrained exercise-group assembly, neural reranking, and a 2026
+  difficulty-adaptive DRL method.
+- Rewrote Related Work around the narrower task--objective--evaluation
+  combination and added seven verified references. Priority language remains
+  rejected, and an indexed-database refresh is still required before
+  submission. No experimental artifact, configuration, result, or figure was
+  changed.

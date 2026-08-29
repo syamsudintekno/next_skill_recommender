@@ -1,5 +1,23 @@
 # DECISIONS
 
+## 2026-08-29 — Literature reconciliation
+
+- **FACT — VERIFIED:** closely related work already covers multi-objective
+  difficulty-aware reinforcement learning, ability--difficulty selection,
+  graph-supported difficulty filtering, constrained exercise-group assembly,
+  difficulty-aware learning paths, and difficulty filtering followed by neural
+  reranking.
+- **DECISION — LOCKED:** novelty language is restricted to the evaluated
+  combination of LightGCN, a training-integrated asymmetric expected-
+  overchallenge term, its matched score-level comparator, and temporal
+  full-ranking relevance/risk evaluation.
+- **CLAIM GUARD — LOCKED:** do not claim “first difficulty-aware,” “first
+  ability-aligned,” “first objective-integrated,” or “first integrated versus
+  post-hoc” recommender.
+- **DECISION — OPEN:** refresh indexed databases and preserve the search export
+  immediately before submission because the targeted 2026 update is not an
+  exhaustive systematic review.
+
 ## 2026-08-28 — Raw dataset provenance recovery
 
 - **FACT — VERIFIED:** Kaggle dataset ID 1108473, version 4, is titled *ASSISTments Data Set 2012-2013* and its sole file `2012-2013-data-with-predictions-4-final.csv` has the same 3,009,494,391-byte size as the analyzed local `dataset_skill.csv`.
